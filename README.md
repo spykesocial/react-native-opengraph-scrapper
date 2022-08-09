@@ -1,34 +1,31 @@
 # React-Native-OpenGraph-Scrapper
 
-[![Node.js CI](https://github.com/jshemas/openGraphScraperLite/workflows/Node.js%20CI/badge.svg?branch=master)](https://github.com/jshemas/openGraphScraperLite/actions?query=branch%3Amaster)
-[![Known Vulnerabilities](https://snyk.io/test/github/jshemas/openGraphScraperLite/badge.svg)](https://snyk.io/test/github/jshemas/openGraphScraperLite)
-
-A simple javascript module for scraping Open Graph and Twitter Card info off a site. For Node.js usage, we recommend `open-graph-scraper` by the same people.
+A simple javascript module for scraping OpenGraph metadata and Twitter Card info off a site.  
 
 ## Installation
 
 ```bash
-npm install open-graph-scraper-lite
+  yarn add @spykesocial/react-native-opengraph-scrapper
 ```
 
 ## Usage
 
 Callback Example:
 ```javascript
-const ogs = require('open-graph-scraper-lite');
+const getOpenGraphData = require('@spykesocial/react-native-opengraph-scrapper');
 const options = { url: 'http://ogp.me/' };
-ogs(options, (error, results, response) => {
-  console.log('error:', error); // This is returns true or false. True if there was a error. The error it self is inside the results object.
-  console.log('results:', results); // This contains all of the Open Graph results
-  console.log('response:', response); // This contains the HTML of page
-});
+getOpenGraphData(options, (error, results, response) => {
+    console.log('error:', error); // This is returns true or false. True if there was a error. The error it self is inside the results object.
+    console.log('results:', results); // This contains all of the Open Graph results
+    console.log('response:', response); // This contains the HTML of page
+  });
 ```
 
 Promise Example:
 ```javascript
-const ogs = require('open-graph-scraper-lite');
+const getOpenGraphData = require('@spykesocial/react-native-opengraph-scrapper');
 const options = { url: 'http://ogp.me/' };
-ogs(options)
+getOpenGraphData(options)
   .then((data) => {
     const { error, result, response } = data;
     console.log('error:', error);  // This is returns true or false. True if there was a error. The error it self is inside the results object.
@@ -73,29 +70,7 @@ Check the return for a ```success``` flag. If success is set to true, then the u
 | peekSize             | Sets the peekSize for the request                                          | 1024          |          |
 | urlValidatorSettings | Sets the options used by validator.js for testing the URL                  | [Here](https://github.com/jshemas/openGraphScraper/blob/master/lib/openGraphScraper.js#L21-L36)          |          |
 
-Note: `open-graph-scraper-lite` uses [ky](https://github.com/sindresorhus/ky) for requests and most of [ky's options](https://github.com/sindresorhus/ky#api) should work as `open-graph-scraper-lite` options.
 
-Custom Meta Tag Example:
-```javascript
-const ogs = require('open-graph-scraper-lite');
-const options = {
-  url: 'https://github.com/jshemas/openGraphScraper',
-  customMetaTags: [{
-    multiple: false, // is there more then one of these tags on a page (normally this is false)
-    property: 'hostname', // meta tag name/property attribute
-    fieldName: 'hostnameMetaTag', // name of the result variable
-  }],
-};
-ogs(options)
-  .then((data) => {
-    const { error, result, response } = data;
-    console.log('hostnameMetaTag:', result.hostnameMetaTag); // hostnameMetaTag: github.com
-  })
-```
 
-## Tests
 
-Then you can run the tests by running...
-```bash
-npm run test
-```
+//thanks https://github.com/chrisuehlinger/openGraphScraperLite
