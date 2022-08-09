@@ -1,4 +1,4 @@
-# openGraphScraperLite
+# React-Native-OpenGraph-Scrapper
 
 [![Node.js CI](https://github.com/jshemas/openGraphScraperLite/workflows/Node.js%20CI/badge.svg?branch=master)](https://github.com/jshemas/openGraphScraperLite/actions?query=branch%3Amaster)
 [![Known Vulnerabilities](https://snyk.io/test/github/jshemas/openGraphScraperLite/badge.svg)](https://snyk.io/test/github/jshemas/openGraphScraperLite)
