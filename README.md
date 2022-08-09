@@ -73,4 +73,4 @@ Check the return for a ```success``` flag. If success is set to true, then the u
 
 
 
-//thanks https://github.com/chrisuehlinger/openGraphScraperLite
+thanks https://github.com/chrisuehlinger/openGraphScraperLite
