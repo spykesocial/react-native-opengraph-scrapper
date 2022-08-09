@@ -1,6 +1,6 @@
 # React-Native-OpenGraph-Scrapper
 
-A simple pure javascript react-native module for scraping OpenGraph metadata and Twitter Card info off a site.  
+A pure javascript react-native module for scraping OpenGraph metadata and Twitter Card info off a site.  
 
 ## Installation
 
