@@ -5,7 +5,7 @@ A simple pure javascript react-native module for scraping OpenGraph metadata and
 ## Installation
 
 ```bash
-  yarn add @spykesocial/react-native-opengraph-scrapper
+  npm install @spykesocial/react-native-opengraph-scrapper
 ```
 
 ## Usage
