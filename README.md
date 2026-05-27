@@ -7,6 +7,10 @@ A TypeScript-friendly React Native package for scraping Open Graph metadata and 
 ```bash
 npm install @spykesocial/react-native-opengraph-scrapper
 ```
+or
+```bash
+yarn add @spykesocial/react-native-opengraph-scrapper
+```
 
 ## Usage
 
