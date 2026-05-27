@@ -83,7 +83,7 @@ describe('spotify', function () {
         'twitterSite',
         'twitterTitle',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
   it('artist should return music:musician', function () {
@@ -158,7 +158,7 @@ describe('spotify', function () {
         'twitterSite',
         'twitterTitle',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
   it('track should return music:song and associated tags', function () {
@@ -247,7 +247,7 @@ describe('spotify', function () {
         'twitterSite',
         'twitterTitle',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
   it('playlist should return music:playlist and associated tags', function () {
@@ -330,7 +330,7 @@ describe('spotify', function () {
         'twitterSite',
         'twitterTitle',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
 });

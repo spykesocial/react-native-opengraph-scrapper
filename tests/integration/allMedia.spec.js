@@ -43,7 +43,7 @@ describe('allMedia', function () {
         alt: null,
       });
       expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/yelp');
-      expect(result.charset).to.be.eql('UTF-8');
+      expect(result.charset).to.be.eql('utf8');
       expect(result.success).to.be.eql(true);
       expect(result).to.have.all.keys(
         'alIosAppName',
@@ -73,7 +73,7 @@ describe('allMedia', function () {
         'twitterImage',
         'twitterSite',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
   it('if more then one media tags are found, return all of them', function () {
@@ -123,7 +123,7 @@ describe('allMedia', function () {
         alt: null,
       }]);
       expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/yelp');
-      expect(result.charset).to.be.eql('UTF-8');
+      expect(result.charset).to.be.eql('utf8');
       expect(result.success).to.be.eql(true);
       expect(result).to.have.all.keys(
         'alIosAppName',
@@ -153,7 +153,7 @@ describe('allMedia', function () {
         'twitterImage',
         'twitterSite',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
 });

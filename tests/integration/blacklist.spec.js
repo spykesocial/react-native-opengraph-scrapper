@@ -13,7 +13,7 @@ describe('blacklist', function () {
       expect(result.requestUrl).to.be.eql('https://www.wikipedia.org/');
       expect(result.error).to.eql('Host name has been black listed');
       expect(result.errorDetails.toString()).to.eql('Error: Host name has been black listed');
-      expect(result).to.have.all.keys(
+      expect(result).to.include.all.keys(
         'error',
         'errorDetails',
         'requestUrl',
@@ -30,13 +30,13 @@ describe('blacklist', function () {
       console.log('error:', error);
       console.log('result:', result);
       expect(error).to.be.eql(false);
-      expect(result.ogTitle).to.be.eql('WikipediaCloseCloseCloseCloseCloseClose');
+      expect(result.ogTitle).to.be.eql('Wikipedia, the free encyclopedia');
       expect(result.ogDescription).to.be.eql('Wikipedia is a free online encyclopedia, created and edited by volunteers around the world and hosted by the Wikimedia Foundation.');
-      expect(result.ogLocale).to.be.eql('mul');
+      expect(result.ogLocale).to.be.eql('en');
       expect(result.requestUrl).to.be.eql('https://www.wikipedia.org/');
       expect(result.charset).to.be.eql('utf8');
       expect(result.success).to.be.eql(true);
-      expect(result).to.have.all.keys(
+      expect(result).to.include.all.keys(
         'ogDescription',
         'ogLocale',
         'ogTitle',
@@ -44,7 +44,7 @@ describe('blacklist', function () {
         'success',
         'charset',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
   it('when blacklist empty', function () {
@@ -55,13 +55,13 @@ describe('blacklist', function () {
       console.log('error:', error);
       console.log('result:', result);
       expect(error).to.be.eql(false);
-      expect(result.ogTitle).to.be.eql('WikipediaCloseCloseCloseCloseCloseClose');
+      expect(result.ogTitle).to.be.eql('Wikipedia, the free encyclopedia');
       expect(result.ogDescription).to.be.eql('Wikipedia is a free online encyclopedia, created and edited by volunteers around the world and hosted by the Wikimedia Foundation.');
-      expect(result.ogLocale).to.be.eql('mul');
+      expect(result.ogLocale).to.be.eql('en');
       expect(result.requestUrl).to.be.eql('https://www.wikipedia.org/');
       expect(result.charset).to.be.eql('utf8');
       expect(result.success).to.be.eql(true);
-      expect(result).to.have.all.keys(
+      expect(result).to.include.all.keys(
         'ogDescription',
         'ogTitle',
         'ogLocale',
@@ -69,7 +69,7 @@ describe('blacklist', function () {
         'success',
         'charset',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
 });

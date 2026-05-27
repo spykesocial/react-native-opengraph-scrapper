@@ -1,9 +1,8 @@
 /* eslint-disable import/no-unresolved */
-const ky = require('ky-universal');
 const chardet = require('chardet');
-const iconv = require('iconv-lite');
 const openGraphScraper = require('../../index');
 const charset = require('../../lib/charset');
+const { createMockFetchResponse } = require('../helpers/mockFetch');
 
 const basicHTML = `
   <html>
@@ -64,7 +63,7 @@ describe('return openGraphScraper', function () {
   context('should be able to hit site and find OG title info', function () {
     context('using just a url', function () {
       beforeEach(async function () {
-        sandbox.stub(ky, 'get').resolves({ body: basicHTML, buffer() { return Buffer.from(basicHTML, 'utf8'); } });
+        sandbox.stub(global, 'fetch').resolves(createMockFetchResponse(basicHTML));
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com' }, function (error, result, response) {
@@ -88,7 +87,7 @@ describe('return openGraphScraper', function () {
 
     context('with html', function () {
       beforeEach(async function () {
-        sandbox.stub(ky, 'get').resolves({ body: basicHTML, buffer() { return Buffer.from(basicHTML, 'utf8'); } });
+        sandbox.stub(global, 'fetch').resolves(createMockFetchResponse(basicHTML));
       });
       it('using callbacks', function () {
         return openGraphScraper({ html: basicHTML }, function (error, result, response) {
@@ -112,7 +111,7 @@ describe('return openGraphScraper', function () {
 
     context('when site is not on blacklist', function () {
       beforeEach(async function () {
-        sandbox.stub(ky, 'get').resolves({ body: basicHTML, buffer() { return Buffer.from(basicHTML, 'utf8'); } });
+        sandbox.stub(global, 'fetch').resolves(createMockFetchResponse(basicHTML));
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com', blacklist: ['testtest.com'] }, function (error, result, response) {
@@ -136,35 +135,35 @@ describe('return openGraphScraper', function () {
 
     context('with encoding set to null (this has been deprecated, but should still work)', function () {
       beforeEach(async function () {
-        sandbox.stub(ky, 'get').resolves({ body: Buffer.from(encodingHTML, 'utf8'), buffer() { return Buffer.from(encodingHTML, 'utf8'); } });
+        sandbox.stub(global, 'fetch').resolves(createMockFetchResponse(encodingHTML));
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com', encoding: null }, function (error, result, response) {
           expect(error).to.be.eql(false);
           expect(result.success).to.be.eql(true);
-          expect(result.charset).to.be.eql('UTF-8');
+          expect(result.charset).to.be.eql('utf8');
           expect(result.ogTitle).to.be.eql('тестовая страница');
           expect(result.ogDescription).to.be.eql('привет тестовая страница<');
           expect(result.requestUrl).to.be.eql('http://www.test.com');
-          expect(response.body).to.be.eql(Buffer.from(encodingHTML, 'utf8'));
+          expect(response.body).to.be.eql(encodingHTML);
         });
       });
       it('using promises', function () {
         return openGraphScraper({ url: 'www.test.com', encoding: null })
           .then(function (data) {
             expect(data.result.success).to.be.eql(true);
-            expect(data.result.charset).to.be.eql('UTF-8');
+            expect(data.result.charset).to.be.eql('utf8');
             expect(data.result.ogTitle).to.be.eql('тестовая страница');
             expect(data.result.ogDescription).to.be.eql('привет тестовая страница<');
             expect(data.result.requestUrl).to.be.eql('http://www.test.com');
-            expect(data.response.body).to.be.eql(Buffer.from(encodingHTML, 'utf8'));
+            expect(data.response.body).to.be.eql(encodingHTML);
           });
       });
     });
 
     context('when there is more then one image', function () {
       beforeEach(async function () {
-        sandbox.stub(ky, 'get').resolves({ body: multipleImageHTML, buffer() { return Buffer.from(multipleImageHTML, 'utf8'); } });
+        sandbox.stub(global, 'fetch').resolves(createMockFetchResponse(multipleImageHTML));
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com' }, function (error, result, response) {
@@ -200,7 +199,7 @@ describe('return openGraphScraper', function () {
 
     context('when meta description exist while og description does not', function () {
       beforeEach(async function () {
-        sandbox.stub(ky, 'get').resolves({ body: metaDescriptionHTML, buffer() { return Buffer.from(metaDescriptionHTML, 'utf8'); } });
+        sandbox.stub(global, 'fetch').resolves(createMockFetchResponse(metaDescriptionHTML));
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com' }, function (error, result, response) {
@@ -226,7 +225,7 @@ describe('return openGraphScraper', function () {
 
     context('as a browser', function () {
       beforeEach(async function () {
-        sandbox.stub(ky, 'get').resolves({ body: basicHTML, buffer() { return Buffer.from(basicHTML, 'utf8'); } });
+        sandbox.stub(global, 'fetch').resolves(createMockFetchResponse(basicHTML));
       });
       it('using callbacks', function () {
         process.browser = true;
@@ -252,7 +251,7 @@ describe('return openGraphScraper', function () {
 
     context('using onlyGetOpenGraphInfo', function () {
       beforeEach(async function () {
-        sandbox.stub(ky, 'get').resolves({ body: metaDescriptionHTML, buffer() { return Buffer.from(metaDescriptionHTML, 'utf8'); } });
+        sandbox.stub(global, 'fetch').resolves(createMockFetchResponse(metaDescriptionHTML));
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com', onlyGetOpenGraphInfo: true }, function (error, result, response) {
@@ -285,7 +284,7 @@ describe('return openGraphScraper', function () {
           <body></body>
         </html>`;
       beforeEach(async function () {
-        sandbox.stub(ky, 'get').resolves({ body: secureUrlHTML, buffer() { return Buffer.from(secureUrlHTML, 'utf8'); } });
+        sandbox.stub(global, 'fetch').resolves(createMockFetchResponse(secureUrlHTML));
       });
       it('using callbacks', function () {
         process.browser = true;
@@ -322,7 +321,7 @@ describe('return openGraphScraper', function () {
           <body></body>
         </html>`;
       beforeEach(async function () {
-        sandbox.stub(ky, 'get').resolves({ body: secureUrlHTML, buffer() { return Buffer.from(secureUrlHTML, 'utf8'); } });
+        sandbox.stub(global, 'fetch').resolves(createMockFetchResponse(secureUrlHTML));
       });
       it('using callbacks', function () {
         process.browser = true;
@@ -352,7 +351,7 @@ describe('return openGraphScraper', function () {
 
     context('when charset and chardet are unknown', function () {
       beforeEach(async function () {
-        sandbox.stub(ky, 'get').resolves({ body: basicHTML, buffer() { return Buffer.from(basicHTML, 'utf8'); } });
+        sandbox.stub(global, 'fetch').resolves(createMockFetchResponse(basicHTML));
         sandbox.stub(chardet, 'detect').returns(false);
         sandbox.stub(charset, 'find').returns(false);
       });
@@ -378,7 +377,7 @@ describe('return openGraphScraper', function () {
 
     context('when passing in a custom tag', function () {
       beforeEach(async function () {
-        sandbox.stub(ky, 'get').resolves({ body: basicHTML, buffer() { return Buffer.from(basicHTML, 'utf8'); } });
+        sandbox.stub(global, 'fetch').resolves(createMockFetchResponse(basicHTML));
       });
       it('using callbacks', function () {
         return openGraphScraper({
@@ -422,7 +421,7 @@ describe('return openGraphScraper', function () {
       beforeEach(async function () {
         const error = new Error('server error');
         error.code = 'ENOTFOUND';
-        sandbox.stub(ky, 'get').throws(error);
+        sandbox.stub(global, 'fetch').rejects(error);
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com' }, function (error, result, response) {
@@ -452,7 +451,7 @@ describe('return openGraphScraper', function () {
       beforeEach(async function () {
         const error = new Error('server error');
         error.code = 'EHOSTUNREACH';
-        sandbox.stub(ky, 'get').throws(error);
+        sandbox.stub(global, 'fetch').rejects(error);
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com' }, function (error, result, response) {
@@ -482,7 +481,7 @@ describe('return openGraphScraper', function () {
       beforeEach(async function () {
         const error = new Error('server error');
         error.code = 'ENETUNREACH';
-        sandbox.stub(ky, 'get').throws(error);
+        sandbox.stub(global, 'fetch').rejects(error);
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com' }, function (error, result, response) {
@@ -512,7 +511,7 @@ describe('return openGraphScraper', function () {
       beforeEach(async function () {
         const error = new Error('server error');
         error.code = 'ERR_INVALID_URL';
-        sandbox.stub(ky, 'get').throws(error);
+        sandbox.stub(global, 'fetch').rejects(error);
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com' }, function (error, result, response) {
@@ -542,7 +541,7 @@ describe('return openGraphScraper', function () {
       beforeEach(async function () {
         const error = new Error('server error');
         error.code = 'EINVAL';
-        sandbox.stub(ky, 'get').throws(error);
+        sandbox.stub(global, 'fetch').rejects(error);
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com' }, function (error, result, response) {
@@ -568,11 +567,11 @@ describe('return openGraphScraper', function () {
       });
     });
 
-    context('when the request sends a ETIMEDOUT error', function () {
+    context('when the request times out', function () {
       beforeEach(async function () {
-        const error = new Error('server error');
-        error.code = 'ETIMEDOUT';
-        sandbox.stub(ky, 'get').throws(error);
+        const error = new Error('The operation was aborted');
+        error.name = 'AbortError';
+        sandbox.stub(global, 'fetch').rejects(error);
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com' }, function (error, result, response) {
@@ -601,7 +600,7 @@ describe('return openGraphScraper', function () {
     context('when the request sends a Response code 401 error', function () {
       beforeEach(async function () {
         const error = new Error('Response code 401');
-        sandbox.stub(ky, 'get').throws(error);
+        sandbox.stub(global, 'fetch').rejects(error);
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com' }, function (error, result, response) {
@@ -630,7 +629,7 @@ describe('return openGraphScraper', function () {
     context('when the request sends a Response code 500 error', function () {
       beforeEach(async function () {
         const error = new Error('Response code 500');
-        sandbox.stub(ky, 'get').throws(error);
+        sandbox.stub(global, 'fetch').rejects(error);
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com' }, function (error, result, response) {
@@ -658,7 +657,7 @@ describe('return openGraphScraper', function () {
 
     context('when an server sends back nothing', function () {
       beforeEach(async function () {
-        sandbox.stub(ky, 'get').resolves({ buffer() { return Buffer.from('', 'utf8'); } });
+        sandbox.stub(global, 'fetch').resolves(createMockFetchResponse(''));
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com' }, function (error, result, response) {
@@ -688,14 +687,14 @@ describe('return openGraphScraper', function () {
 
     context('when an server error occurres', function () {
       beforeEach(async function () {
-        sandbox.stub(ky, 'get').resolves({ status: 500, buffer() { return Buffer.from(basicHTML, 'utf8'); } });
+        sandbox.stub(global, 'fetch').resolves(createMockFetchResponse(basicHTML, { status: 500 }));
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com' }, function (error, result, response) {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
-          expect(result.error).to.eql('Server has returned a 400/500 error code');
-          expect(result.errorDetails.toString()).to.eql('Error: Server has returned a 400/500 error code');
+          expect(result.error).to.eql('Web server is returning error');
+          expect(result.errorDetails.toString()).to.eql('Error: Web server is returning error');
           expect(result.requestUrl).to.be.eql('http://www.test.com');
           expect(response).to.be.eql(undefined);
         });
@@ -707,8 +706,8 @@ describe('return openGraphScraper', function () {
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
-            expect(data.result.error).to.eql('Server has returned a 400/500 error code');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Server has returned a 400/500 error code');
+            expect(data.result.error).to.eql('Web server is returning error');
+            expect(data.result.errorDetails.toString()).to.eql('Error: Web server is returning error');
             expect(data.result.requestUrl).to.eql('http://www.test.com');
             expect(data.result.success).to.eql(false);
             expect(data.response).to.be.eql(undefined);
@@ -845,36 +844,6 @@ describe('return openGraphScraper', function () {
             expect(data.result.error).to.eql('Must specify either `url` or `html`, not both');
             expect(data.result.errorDetails.toString()).to.eql('Error: Must specify either `url` or `html`, not both');
             expect(data.result.requestUrl).to.eql('www.test.com');
-            expect(data.result.success).to.eql(false);
-            expect(data.response).to.be.eql(undefined);
-          });
-      });
-    });
-
-    context('when iconv throws a error', function () {
-      beforeEach(async function () {
-        const error = new Error('Page not found');
-        sandbox.stub(ky, 'get').resolves({ body: Buffer.from(basicHTML, 'utf8'), buffer() { return Buffer.from(basicHTML, 'utf8'); } });
-        sandbox.stub(iconv, 'decode').throws(error);
-      });
-      it('using callbacks', function () {
-        return openGraphScraper({ url: 'www.test.com' }, function (error, result, response) {
-          expect(error).to.be.eql(true);
-          expect(result.success).to.be.eql(false);
-          expect(result.error).to.eql('Page not found');
-          expect(result.errorDetails.toString()).to.eql('Error: Page not found');
-          expect(response).to.be.eql(undefined);
-        });
-      });
-      it('using promises', function () {
-        return openGraphScraper({ url: 'www.test.com' })
-          .then(function () {
-            expect().fail('this should not happen');
-          })
-          .catch(function (data) {
-            expect(data.error).to.be.eql(true);
-            expect(data.result.error).to.eql('Page not found');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Page not found');
             expect(data.result.success).to.eql(false);
             expect(data.response).to.be.eql(undefined);
           });

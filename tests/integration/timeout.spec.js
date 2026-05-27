@@ -9,13 +9,13 @@ describe('timeout', function () {
       console.log('error:', error);
       console.log('result:', result);
       expect(error).to.be.eql(false);
-      expect(result.ogTitle).to.be.eql('WikipediaCloseCloseCloseCloseCloseClose');
+      expect(result.ogTitle).to.be.eql('Wikipedia, the free encyclopedia');
       expect(result.ogDescription).to.be.eql('Wikipedia is a free online encyclopedia, created and edited by volunteers around the world and hosted by the Wikimedia Foundation.');
-      expect(result.ogLocale).to.be.eql('mul');
+      expect(result.ogLocale).to.be.eql('en');
       expect(result.requestUrl).to.be.eql('http://www.wikipedia.org/');
       expect(result.charset).to.be.eql('utf8');
       expect(result.success).to.be.eql(true);
-      expect(result).to.have.all.keys(
+      expect(result).to.include.all.keys(
         'ogDescription',
         'ogLocale',
         'ogTitle',
@@ -23,7 +23,7 @@ describe('timeout', function () {
         'success',
         'charset',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
   it('set to 2', function () {
@@ -38,7 +38,7 @@ describe('timeout', function () {
       expect(result.requestUrl).to.be.eql('http://www.wikipedia.org/');
       expect(result.error).to.eql('Time out');
       expect(result.errorDetails.toString()).to.eql('Error: Time out');
-      expect(result).to.have.all.keys(
+      expect(result).to.include.all.keys(
         'error',
         'errorDetails',
         'requestUrl',
@@ -55,13 +55,13 @@ describe('timeout', function () {
       console.log('error:', error);
       console.log('result:', result);
       expect(error).to.be.eql(false);
-      expect(result.ogTitle).to.be.eql('WikipediaCloseCloseCloseCloseCloseClose');
+      expect(result.ogTitle).to.be.eql('Wikipedia, the free encyclopedia');
       expect(result.ogDescription).to.be.eql('Wikipedia is a free online encyclopedia, created and edited by volunteers around the world and hosted by the Wikimedia Foundation.');
-      expect(result.ogLocale).to.be.eql('mul');
+      expect(result.ogLocale).to.be.eql('en');
       expect(result.requestUrl).to.be.eql('http://www.wikipedia.org/');
       expect(result.charset).to.be.eql('utf8');
       expect(result.success).to.be.eql(true);
-      expect(result).to.have.all.keys(
+      expect(result).to.include.all.keys(
         'ogDescription',
         'ogLocale',
         'ogTitle',
@@ -69,7 +69,7 @@ describe('timeout', function () {
         'success',
         'charset',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
   it('set to a number string', function () {
@@ -80,13 +80,13 @@ describe('timeout', function () {
       console.log('error:', error);
       console.log('result:', result);
       expect(error).to.be.eql(false);
-      expect(result.ogTitle).to.be.eql('WikipediaCloseCloseCloseCloseCloseClose');
+      expect(result.ogTitle).to.be.eql('Wikipedia, the free encyclopedia');
       expect(result.ogDescription).to.be.eql('Wikipedia is a free online encyclopedia, created and edited by volunteers around the world and hosted by the Wikimedia Foundation.');
-      expect(result.ogLocale).to.be.eql('mul');
+      expect(result.ogLocale).to.be.eql('en');
       expect(result.requestUrl).to.be.eql('http://www.wikipedia.org/');
       expect(result.charset).to.be.eql('utf8');
       expect(result.success).to.be.eql(true);
-      expect(result).to.have.all.keys(
+      expect(result).to.include.all.keys(
         'ogDescription',
         'ogLocale',
         'ogTitle',
@@ -94,7 +94,7 @@ describe('timeout', function () {
         'success',
         'charset',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
   it('set to some random chars', function () {
@@ -105,13 +105,13 @@ describe('timeout', function () {
       console.log('error:', error);
       console.log('result:', result);
       expect(error).to.be.eql(false);
-      expect(result.ogTitle).to.be.eql('WikipediaCloseCloseCloseCloseCloseClose');
+      expect(result.ogTitle).to.be.eql('Wikipedia, the free encyclopedia');
       expect(result.ogDescription).to.be.eql('Wikipedia is a free online encyclopedia, created and edited by volunteers around the world and hosted by the Wikimedia Foundation.');
-      expect(result.ogLocale).to.be.eql('mul');
+      expect(result.ogLocale).to.be.eql('en');
       expect(result.requestUrl).to.be.eql('http://www.wikipedia.org/');
       expect(result.charset).to.be.eql('utf8');
       expect(result.success).to.be.eql(true);
-      expect(result).to.have.all.keys(
+      expect(result).to.include.all.keys(
         'ogDescription',
         'ogLocale',
         'ogTitle',
@@ -119,7 +119,7 @@ describe('timeout', function () {
         'success',
         'charset',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
 });

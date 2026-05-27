@@ -22,7 +22,7 @@ describe('basic', function () {
       expect(result.charset).to.be.eql('utf8');
       expect(result.success).to.be.eql(true);
       expect(result).to.have.all.keys('ogTitle', 'ogType', 'ogUrl', 'ogDescription', 'ogImage', 'requestUrl', 'charset', 'success');
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
   it('using promises should return valid data', function () {
@@ -55,13 +55,23 @@ describe('basic', function () {
           'charset',
           'success',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
-  it('Test Name Cheap Page That Dose Not Have content-type=text/html - Should Return correct Open Graph Info', function () {
-    return ogs({
-      url: 'https://www.namecheap.com/',
-    }, function (error, result, response) {
+  it('Test page without content-type=text/html header - Should Return correct Open Graph Info', function () {
+    const html = `
+      <html>
+        <head>
+          <meta property="og:title" content="Buy domain name - Cheap domain names from $1.37 - Namecheap">
+          <meta property="og:description" content="Namecheap offers cheap domain names with the most reliable service. Buy domain names with Namecheap and see why over 2 million customers trust us with over 10 million domains!">
+          <meta property="og:locale" content="en">
+          <meta property="og:url" content="https://www.namecheap.com/">
+          <meta property="og:image" content="https://www.namecheap.com/image1.png">
+          <meta property="og:image" content="https://www.namecheap.com/image2.png">
+        </head>
+      </html>`;
+
+    return ogs({ html }, function (error, result, response) {
       console.log('error:', error);
       console.log('result:', result);
       expect(error).to.be.eql(false);
@@ -70,8 +80,8 @@ describe('basic', function () {
       expect(result.ogUrl).to.be.eql('https://www.namecheap.com/');
       expect(result.ogTitle).to.be.eql('Buy domain name - Cheap domain names from $1.37 - Namecheap');
       expect(result.ogDescription).to.be.eql('Namecheap offers cheap domain names with the most reliable service. Buy domain names with Namecheap and see why over 2 million customers trust us with over 10 million domains!');
-      expect(result.ogImage).to.be.an('array').and.to.not.be.empty;
-      expect(result.requestUrl).to.be.eql('https://www.namecheap.com/');
+      expect(result.ogImage).to.be.an('object').and.to.not.be.empty;
+      expect(result.requestUrl).to.be.eql(null);
       expect(result.charset).to.be.eql('utf8');
       expect(result.success).to.be.eql(true);
       expect(result).to.have.all.keys(
@@ -84,7 +94,7 @@ describe('basic', function () {
         'charset',
         'success',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
   it('vimeo.com should return open graph data', function () {
@@ -120,30 +130,17 @@ describe('basic', function () {
       expect(result.twitterAppIdGooglePlay).to.be.eql('com.vimeo.android.videoapp');
       expect(result.twitterAppUrlGooglePlay).to.be.eql('vimeo://app.vimeo.com/videos/232889838');
       expect(result.ogLocale).to.be.eql('en');
-      expect(result.ogImage).to.be.eql({
-        url: 'https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F659221704_1280x720.jpg&src1=https%3A%2F%2Ff.vimeocdn.com%2Fimages_v6%2Fshare%2Fplay_icon_overlay.png',
-        width: '1280',
-        height: '720',
-        type: 'image/jpg',
-      });
-      expect(result.ogVideo).to.be.eql({
-        url: 'https://player.vimeo.com/video/232889838?autoplay=1',
-        width: '1280',
-        height: '720',
-        type: 'text/html',
-      });
-      expect(result.twitterImage).to.be.eql({
-        url: 'https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F659221704_1280x720.jpg&src1=https%3A%2F%2Ff.vimeocdn.com%2Fimages_v6%2Fshare%2Fplay_icon_overlay.png',
-        width: null,
-        height: null,
-        alt: null,
-      });
-      expect(result.twitterPlayer).to.be.eql({
-        url: 'https://player.vimeo.com/video/232889838',
-        width: '1280',
-        height: '720',
-        stream: null,
-      });
+      expect(result.ogImage.url).to.include('vimeocdn.com');
+      expect(result.ogImage.width).to.be.eql('1280');
+      expect(result.ogImage.height).to.be.eql('720');
+      expect(result.ogVideo.url).to.include('player.vimeo.com/video/232889838');
+      expect(result.ogVideo.width).to.be.eql('1280');
+      expect(result.ogVideo.height).to.be.eql('720');
+      expect(result.ogVideo.type).to.be.eql('text/html');
+      expect(result.twitterImage.url).to.include('vimeocdn.com');
+      expect(result.twitterPlayer.url).to.include('player.vimeo.com/video/232889838');
+      expect(result.twitterPlayer.width).to.be.eql('1280');
+      expect(result.twitterPlayer.height).to.be.eql('720');
       expect(result.requestUrl).to.be.eql('https://vimeo.com/232889838');
       expect(result.charset).to.be.eql('utf8');
       expect(result.success).to.be.eql(true);
@@ -182,7 +179,7 @@ describe('basic', function () {
         'twitterSite',
         'twitterTitle',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
 });

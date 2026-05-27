@@ -22,7 +22,7 @@ describe('ogImageFallback', function () {
         'success',
         'charset',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
   it('should use image fallback', function () {
@@ -60,7 +60,7 @@ describe('ogImageFallback', function () {
         'success',
         'charset',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
 });

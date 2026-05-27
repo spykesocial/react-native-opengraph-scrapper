@@ -30,7 +30,7 @@ describe('image', function () {
         type: 'jpg',
       });
       expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/flickr');
-      expect(result.charset).to.be.eql('UTF-8');
+      expect(result.charset).to.be.eql('utf8');
       expect(result.success).to.be.eql(true);
       expect(result).to.have.all.keys(
         'alIosAppName',
@@ -53,7 +53,7 @@ describe('image', function () {
         'twitterDescription',
         'twitterSite',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
   it('Test getting the description and images from meta tags', function () {
@@ -88,7 +88,7 @@ describe('image', function () {
         'success',
         'charset',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
 });

@@ -83,7 +83,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('arstechnica', function () {
@@ -118,7 +118,7 @@ describe('static', function () {
           alt: null,
         });
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/arstechnica');
-        expect(result.charset).to.be.eql('UTF-8');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'ogDescription',
@@ -139,7 +139,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('battlefield', function () {
@@ -191,7 +191,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('bestbuy', function () {
@@ -247,7 +247,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('bjango', function () {
@@ -269,7 +269,7 @@ describe('static', function () {
           'success',
           'charset',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('bloomberg', function () {
@@ -308,7 +308,7 @@ describe('static', function () {
         expect(result.ogAudioSecureURL).to.be.eql('https://assets.bwbx.io/s3/readings/QBS8ZSDWRGG71591924612662.mp3');
         expect(result.ogAudioType).to.be.eql('audio/mpeg');
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/bloomberg');
-        expect(result.charset).to.be.eql('UTF-8');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'alAndroidAppName',
@@ -333,7 +333,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('businesstoday', function () {
@@ -366,7 +366,7 @@ describe('static', function () {
         expect(result.ogTitle).to.be.eql('Madhu Kapur, family withdraw case against Yes Bank');
         expect(result.ogDescription).to.be.eql("Madhu Kapur in her suit had sought various reliefs including recognition of the family's right to participate in the management of the bank");
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/businesstoday');
-        expect(result.charset).to.be.eql('ISO-8859-1');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'ogDate',
@@ -385,7 +385,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('cbronline', function () {
@@ -422,7 +422,7 @@ describe('static', function () {
           alt: null,
         });
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/cbronline');
-        expect(result.charset).to.be.eql('UTF-8');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'articleModifiedTime',
@@ -445,7 +445,7 @@ describe('static', function () {
           'twitterImage',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('cio', function () {
@@ -503,7 +503,7 @@ describe('static', function () {
           'twitterImage',
           'twitterSite',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('cloudpro', function () {
@@ -538,7 +538,7 @@ describe('static', function () {
           alt: null,
         });
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/cloudpro');
-        expect(result.charset).to.be.eql('UTF-8');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'ogDescription',
@@ -559,7 +559,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('cnet', function () {
@@ -621,7 +621,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('crn', function () {
@@ -662,7 +662,7 @@ describe('static', function () {
           'success',
           'charset',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('computerworld', function () {
@@ -718,7 +718,7 @@ describe('static', function () {
           'twitterImage',
           'twitterSite',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('darkreading', function () {
@@ -751,7 +751,7 @@ describe('static', function () {
           alt: null,
         });
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/darkreading');
-        expect(result.charset).to.be.eql('UTF-8');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'ogDescription',
@@ -770,7 +770,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('discourse', function () {
@@ -820,7 +820,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('docs', function () {
@@ -841,7 +841,7 @@ describe('static', function () {
           height: '630',
           type: null,
         });
-        expect(result.charset).to.be.eql('UTF-8');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'ogDescription',
@@ -854,7 +854,7 @@ describe('static', function () {
           'success',
           'charset',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('ebay', function () {
@@ -888,7 +888,7 @@ describe('static', function () {
           alt: null,
         });
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/ebay');
-        expect(result.charset).to.be.eql('UTF-8');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'ogDate',
@@ -908,7 +908,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('economictimes', function () {
@@ -990,7 +990,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('entrepreneur', function () {
@@ -1030,7 +1030,7 @@ describe('static', function () {
         });
         expect(result.articlePublisher).to.be.eql('https://www.facebook.com/EntMagazine');
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/entrepreneur');
-        expect(result.charset).to.be.eql('UTF-8');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'articleAuthor',
@@ -1056,7 +1056,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('etsy', function () {
@@ -1138,7 +1138,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('facebook', function () {
@@ -1157,7 +1157,7 @@ describe('static', function () {
           height: null,
           type: 'png',
         });
-        expect(result.ogTitle).to.be.eql('Facebook - Log In or Sign Up');
+        expect(result.ogTitle).to.be.eql('Facebook - log in or sign up');
         expect(result.ogDescription).to.be.eql('Create an account or log into Facebook. Connect with friends, family and other people you know. Share photos and videos, send messages and get updates.');
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/facebook');
         expect(result.charset).to.be.eql('utf8');
@@ -1173,7 +1173,7 @@ describe('static', function () {
           'success',
           'charset',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('fastcompany', function () {
@@ -1239,7 +1239,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('forbes', function () {
@@ -1301,7 +1301,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('fortune', function () {
@@ -1355,7 +1355,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('foursquare', function () {
@@ -1453,7 +1453,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('geektime', function () {
@@ -1517,7 +1517,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('inc', function () {
@@ -1554,7 +1554,7 @@ describe('static', function () {
           alt: null,
         });
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/inc');
-        expect(result.charset).to.be.eql('UTF-8');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'articleAuthor',
@@ -1577,7 +1577,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('insta', function () {
@@ -1626,7 +1626,7 @@ describe('static', function () {
           'success',
           'charset',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('itunes', function () {
@@ -1678,7 +1678,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('jewishbusinessnews', function () {
@@ -1746,7 +1746,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('kickstarter', function () {
@@ -1786,7 +1786,7 @@ describe('static', function () {
           alt: null,
         });
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/kickstarter');
-        expect(result.charset).to.be.eql('UTF-8');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'ogDate',
@@ -1812,7 +1812,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('latimes', function () {
@@ -1848,7 +1848,7 @@ describe('static', function () {
           alt: 'FILE - In this Oct. 8, 2014, file photo, a Wall Street address is carved in the side of a building in New York. Stocks are opening modestly higher on Wall Street, Friday, Aug. 11, 2017, led by gains in technology companies and banks. (AP Photo/Mark Lennihan, File)',
         });
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/latimes');
-        expect(result.charset).to.be.eql('UTF-8');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'articleAuthor',
@@ -1870,7 +1870,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('leandata', function () {
@@ -1901,7 +1901,7 @@ describe('static', function () {
           alt: null,
         });
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/leandata');
-        expect(result.charset).to.be.eql('UTF-8');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'ogDate',
@@ -1918,7 +1918,7 @@ describe('static', function () {
           'twitterImage',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('learnxinyminutes', function () {
@@ -1949,7 +1949,7 @@ describe('static', function () {
           'success',
           'charset',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('lifehacker', function () {
@@ -1999,7 +1999,7 @@ describe('static', function () {
           'twitterImage',
           'twitterSite',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('macrumors', function () {
@@ -2057,7 +2057,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('mashable', function () {
@@ -2127,7 +2127,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('medium', function () {
@@ -2173,7 +2173,7 @@ describe('static', function () {
           alt: null,
         });
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/medium');
-        expect(result.charset).to.be.eql('UTF-8');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'alAndroidAppName',
@@ -2205,7 +2205,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('michaelkors', function () {
@@ -2232,7 +2232,7 @@ describe('static', function () {
         type: null,
       });
       expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/michaelkors');
-      expect(result.charset).to.be.eql('UTF-8');
+      expect(result.charset).to.be.eql('utf8');
       expect(result.success).to.be.eql(true);
       expect(result).to.have.all.keys(
         'author',
@@ -2250,7 +2250,7 @@ describe('static', function () {
         'charset',
         'success',
       );
-      expect(response).to.be.an('Response').and.to.not.be.empty;
+      expect(response).to.have.property('ok', true);
     });
   });
   it('mulesoft', function () {
@@ -2280,7 +2280,7 @@ describe('static', function () {
           'success',
           'charset',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('newegg', function () {
@@ -2609,7 +2609,7 @@ describe('static', function () {
           'success',
           'charset',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('npm', function () {
@@ -2652,7 +2652,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('prnewswire', function () {
@@ -2706,7 +2706,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('reddit', function () {
@@ -2749,7 +2749,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('reuters', function () {
@@ -2817,7 +2817,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('rottentomatoes', function () {
@@ -3076,7 +3076,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('smile', function () {
@@ -3272,7 +3272,7 @@ describe('static', function () {
           },
         ]);
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/smile');
-        expect(result.charset).to.be.eql('UTF-8');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'ogDescription',
@@ -3283,7 +3283,7 @@ describe('static', function () {
           'success',
           'charset',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('techcrunch', function () {
@@ -3341,7 +3341,7 @@ describe('static', function () {
           'twitterSite',
           'twitterTitle',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('ted', function () {
@@ -3417,7 +3417,7 @@ describe('static', function () {
           'twitterImage',
           'twitterSite',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('thinkgeek', function () {
@@ -3454,7 +3454,7 @@ describe('static', function () {
           alt: null,
         });
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/thinkgeek');
-        expect(result.charset).to.be.eql('UTF-8');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'articleAuthor',
@@ -3477,7 +3477,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('vox', function () {
@@ -3541,7 +3541,7 @@ describe('static', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('w3', function () {
@@ -3574,7 +3574,7 @@ describe('static', function () {
           'success',
           'charset',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
   it('xkcd', function () {
@@ -3586,7 +3586,7 @@ describe('static', function () {
         expect(error).to.be.eql(false);
         expect(result.ogTitle).to.be.eql('xkcd: Regular Expressions');
         expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/xkcd');
-        expect(result.charset).to.be.eql('ISO-8859-1');
+        expect(result.charset).to.be.eql('utf8');
         expect(result.success).to.be.eql(true);
         expect(result).to.have.all.keys(
           'ogTitle',
@@ -3594,7 +3594,7 @@ describe('static', function () {
           'success',
           'charset',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
   });
 });

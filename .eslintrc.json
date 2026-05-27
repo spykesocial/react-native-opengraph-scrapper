@@ -1,20 +1,15 @@
 {
-  "settings": {
-    "react": {
-      "version": "latest"
-    }
-  },
   "extends": [
-    "airbnb",
-    "plugin:promise/recommended"
+    "airbnb-base",
+    "plugin:mocha/recommended"
   ],
   "plugins": [
-    "mocha",
-    "promise"
+    "mocha"
   ],
   "env": {
     "commonjs": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "rules": {
     "max-len": ["error", {

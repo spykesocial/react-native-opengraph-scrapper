@@ -78,7 +78,7 @@ describe('encoding', function () {
           'twitterTitle',
           'twitterUrl',
         );
-        return expect(response).to.be.an('Response').and.to.not.be.empty;
+        return expect(response).to.have.property('ok', true);
       });
     });
     it('when charset is utf-8 - signanthealth', function () {
@@ -119,7 +119,7 @@ describe('encoding', function () {
           'twitterCreator',
           'twitterSite',
         );
-        return expect(response).to.be.an('Response').and.to.not.be.empty;
+        return expect(response).to.have.property('ok', true);
       });
     });
     it('when charset is utf-8 - ogp', function () {
@@ -153,7 +153,7 @@ describe('encoding', function () {
           'requestUrl',
           'success',
         );
-        expect(response).to.be.an('Response').and.to.not.be.empty;
+        expect(response).to.have.property('ok', true);
       });
     });
     // TODO: need to look into why the charset is coming back as `euc-jp` and the endcoding is messed up
@@ -209,7 +209,7 @@ describe('encoding', function () {
     //       'twitterSite',
     //       'twitterTitle',
     //     );
-    //     expect(response).to.be.an('Response').and.to.not.be.empty;
+    //     expect(response).to.have.property('ok', true);
     //   });
     // });
     // TODO: should find a new use case that always resultes in this failing
@@ -253,7 +253,7 @@ describe('encoding', function () {
     //       'requestUrl',
     //       'success',
     //     );
-    //     return expect(response).to.be.an('Response').and.to.not.be.empty;
+    //     return expect(response).to.have.property('ok', true);
     //   });
     // });
   });
@@ -298,7 +298,7 @@ describe('encoding', function () {
             'requestUrl',
             'success',
           );
-          expect(response).to.be.an('Response').and.to.not.be.empty;
+          expect(response).to.have.property('ok', true);
         });
     });
     it('aliexpress', function () {
@@ -345,7 +345,7 @@ describe('encoding', function () {
             'requestUrl',
             'success',
           );
-          expect(response).to.be.an('Response').and.to.not.be.empty;
+          expect(response).to.have.property('ok', true);
         });
     });
     it('baidu', function () {
@@ -410,7 +410,7 @@ describe('encoding', function () {
             'requestUrl',
             'success',
           );
-          expect(response).to.be.an('Response').and.to.not.be.empty;
+          expect(response).to.have.property('ok', true);
         });
     });
     it('csdn', function () {
@@ -438,7 +438,7 @@ describe('encoding', function () {
             'requestUrl',
             'success',
           );
-          expect(response).to.be.an('Response').and.to.not.be.empty;
+          expect(response).to.have.property('ok', true);
         });
     });
     it('naver', function () {
@@ -477,7 +477,7 @@ describe('encoding', function () {
             'requestUrl',
             'success',
           );
-          expect(response).to.be.an('Response').and.to.not.be.empty;
+          expect(response).to.have.property('ok', true);
         });
     });
     it('okezone', function () {
@@ -545,7 +545,7 @@ describe('encoding', function () {
             'twitterTitle',
             'twitterUrl',
           );
-          expect(response).to.be.an('Response').and.to.not.be.empty;
+          expect(response).to.have.property('ok', true);
         });
     });
     it('qq', function () {
@@ -558,7 +558,7 @@ describe('encoding', function () {
           expect(result.ogTitle).to.be.eql('烧警车、闯议会、要求总统辞职，塞尔维亚宵禁引发十年最大规模抗议_腾讯新闻');
           expect(result.ogDescription).to.be.eql('东方网·纵相新闻记者单珊随着疫情反弹，塞尔维亚首都再次实施宵禁，但这一举措似乎并不被部分国民理解。据路透社7月8日报道，7日夜间，塞尔维亚首都贝尔格莱德市中心暴发大规模骚乱。抗议者向警察投掷照明弹……');
           expect(result.ogLocale).to.be.eql('zh-CN');
-          expect(result.charset).to.be.eql('UTF-8');
+          expect(result.charset).to.be.eql('utf8');
           expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/qq');
           expect(result.success).to.be.eql(true);
           expect(result).to.have.all.keys(
@@ -569,7 +569,7 @@ describe('encoding', function () {
             'requestUrl',
             'success',
           );
-          expect(response).to.be.an('Response').and.to.not.be.empty;
+          expect(response).to.have.property('ok', true);
         });
     });
     it('sohu', function () {
@@ -581,7 +581,7 @@ describe('encoding', function () {
           expect(error).to.be.eql(false);
           expect(result.ogTitle).to.be.eql('搜狐');
           expect(result.ogImage.length).to.be.eql(43);
-          expect(result.charset).to.be.eql('UTF-8');
+          expect(result.charset).to.be.eql('utf8');
           expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/sohu');
           expect(result.success).to.be.eql(true);
           expect(result).to.have.all.keys(
@@ -591,7 +591,7 @@ describe('encoding', function () {
             'requestUrl',
             'success',
           );
-          expect(response).to.be.an('Response').and.to.not.be.empty;
+          expect(response).to.have.property('ok', true);
         });
     });
     it('taobao', function () {
@@ -648,7 +648,7 @@ describe('encoding', function () {
             },
           ]);
           expect(result.ogUrl).to.be.eql('https://item.taobao.com/item.htm?id=562283240178');
-          expect(result.charset).to.be.eql('UTF-8');
+          expect(result.charset).to.be.eql('utf8');
           expect(result.requestUrl).to.be.eql('https://jshemas.github.io/openGraphScraperPages/taobao');
           expect(result.success).to.be.eql(true);
           expect(result).to.have.all.keys(
@@ -660,7 +660,7 @@ describe('encoding', function () {
             'requestUrl',
             'success',
           );
-          expect(response).to.be.an('Response').and.to.not.be.empty;
+          expect(response).to.have.property('ok', true);
         });
     });
     it('tmall', function () {
@@ -705,7 +705,7 @@ describe('encoding', function () {
             'requestUrl',
             'success',
           );
-          expect(response).to.be.an('Response').and.to.not.be.empty;
+          expect(response).to.have.property('ok', true);
         });
     });
     it('weibo', function () {
@@ -729,7 +729,7 @@ describe('encoding', function () {
             'requestUrl',
             'success',
           );
-          expect(response).to.be.an('Response').and.to.not.be.empty;
+          expect(response).to.have.property('ok', true);
         });
     });
     it('xinhuanet', function () {
@@ -790,7 +790,7 @@ describe('encoding', function () {
             'requestUrl',
             'success',
           );
-          expect(response).to.be.an('Response').and.to.not.be.empty;
+          expect(response).to.have.property('ok', true);
         });
     });
     it('zhanqi', function () {
@@ -812,7 +812,7 @@ describe('encoding', function () {
             'requestUrl',
             'success',
           );
-          expect(response).to.be.an('Response').and.to.not.be.empty;
+          expect(response).to.have.property('ok', true);
         });
     });
   });
