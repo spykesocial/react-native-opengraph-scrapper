@@ -11,6 +11,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
+    "ignoreDeprecations": "6.0",
     "noEmit": true,
     "types": ["mocha", "chai"]
   },
