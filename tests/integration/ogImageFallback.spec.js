@@ -1,4 +1,4 @@
-const ogs = require('../../index');
+import ogs from '@spykesocial/react-native-opengraph-scrapper';
 
 describe('ogImageFallback', function () {
   it('should not use image fallback if there is no og image', function () {

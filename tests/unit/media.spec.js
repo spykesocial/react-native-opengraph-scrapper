@@ -1,4 +1,4 @@
-const media = require('../../lib/media');
+import * as media from '../../dist/media.js';
 
 describe('media', function () {
   it('has images and twitter images', function () {

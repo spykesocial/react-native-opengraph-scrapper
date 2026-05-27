@@ -1,4 +1,4 @@
-const ogs = require('../../index');
+import ogs from '@spykesocial/react-native-opengraph-scrapper';
 
 const HTML_STRING = `
 <html>
@@ -21,6 +21,7 @@ describe('html', function () {
       expect(result.ogTitle).to.be.eql('Test page');
       expect(result.requestUrl).to.be.eql(null);
       expect(result).to.have.all.keys(
+        'charset',
         'ogTitle',
         'requestUrl',
         'success',

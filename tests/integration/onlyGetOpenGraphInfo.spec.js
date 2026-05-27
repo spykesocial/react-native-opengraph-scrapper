@@ -1,4 +1,4 @@
-const ogs = require('../../index');
+import ogs from '@spykesocial/react-native-opengraph-scrapper';
 
 describe('onlyGetOpenGraphInfo', function () {
   it('should only get open graph info', function () {

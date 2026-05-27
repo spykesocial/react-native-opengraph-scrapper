@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const chai = require('chai');
-const sinon = require('sinon');
+import chai from 'chai';
+import sinon from 'sinon';
 
-global.expect = chai.expect;
-global.sinon = sinon;
+globalThis.expect = chai.expect;
+globalThis.sinon = sinon;

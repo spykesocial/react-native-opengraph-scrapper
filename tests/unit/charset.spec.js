@@ -1,4 +1,4 @@
-const charset = require('../../lib/charset');
+import * as charset from '../../dist/charset.js';
 
 describe('charset', function () {
   it('find charset from content-type', function () {

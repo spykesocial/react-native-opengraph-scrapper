@@ -1,34 +1,34 @@
-/* eslint-disable max-len */
-const fields = require('./fields');
+import fields from './fields.js';
+import type { MediaResult, OpenGraphResult, OpenGraphScraperOptions } from './types.js';
 
-const mediaMapperTwitterImage = (item) => ({
+const mediaMapperTwitterImage = (item: Array<string | null | undefined>): MediaResult => ({
   url: item[0],
   width: item[1],
   height: item[2],
   alt: item[3],
 });
 
-const mediaMapperTwitterPlayer = (item) => ({
+const mediaMapperTwitterPlayer = (item: Array<string | null | undefined>): MediaResult => ({
   url: item[0],
   width: item[1],
   height: item[2],
   stream: item[3],
 });
 
-const mediaMapperMusicSong = (item) => ({
+const mediaMapperMusicSong = (item: Array<string | null | undefined>): MediaResult => ({
   url: item[0],
   track: item[1],
   disc: item[2],
 });
 
-const mediaMapper = (item) => ({
+const mediaMapper = (item: Array<string | null | undefined>): MediaResult => ({
   url: item[0],
   width: item[1],
   height: item[2],
   type: item[3],
 });
 
-const mediaSorter = (a, b) => {
+const mediaSorter = (a: MediaResult, b: MediaResult) => {
   if (!(a.url && b.url)) {
     return 0;
   }
@@ -40,38 +40,39 @@ const mediaSorter = (a, b) => {
 
   if (aExt === 'gif' && bExt !== 'gif') {
     return -1;
-  } if (aExt !== 'gif' && bExt === 'gif') {
+  }
+  if (aExt !== 'gif' && bExt === 'gif') {
     return 1;
   }
-  return Math.max(b.width, b.height) - Math.max(a.width, a.height);
+  return Math.max(Number(b.width), Number(b.height)) - Math.max(Number(a.width), Number(a.height));
 };
 
-const mediaSorterMusicSong = (a, b) => {
+const mediaSorterMusicSong = (a: MediaResult, b: MediaResult) => {
   if (!(a.track && b.track)) {
     return 0;
-  } if (a.disc > b.disc) {
+  }
+  if (Number(a.disc) > Number(b.disc)) {
     return 1;
-  } if (a.disc < b.disc) {
+  }
+  if (Number(a.disc) < Number(b.disc)) {
     return -1;
   }
-  return a.track - b.track;
+  return Number(a.track) - Number(b.track);
 };
 
-// lodash zip replacement
-const zip = (array, ...args) => {
+const toArray = (value: unknown): Array<string | null | undefined> | undefined => (
+  Array.isArray(value) ? value as Array<string | null | undefined> : undefined
+);
+
+const zip = (
+  array: Array<string | null | undefined> | undefined,
+  ...args: Array<Array<string | null | undefined> | undefined>
+) => {
   if (array === undefined) return [];
-  return array
-    .map((value, idx) => [value, ...args.map((arr) => arr[idx])]);
+  return array.map((value, idx) => [value, ...args.map((arr) => arr?.[idx])]);
 };
 
-/*
- * media setup
- * @param string ogObject - return open open graph info
- * @param string options - options the user has set
- * @param function callback
- */
-exports.mediaSetup = (ogObject, options) => {
-  // sets ogImage image/width/height/type to null if one these exists
+export const mediaSetup = (ogObject: OpenGraphResult, options: OpenGraphScraperOptions) => {
   if (ogObject.ogImage || ogObject.ogImageWidth || ogObject.twitterImageHeight || ogObject.ogImageType) {
     ogObject.ogImage = ogObject.ogImage ? ogObject.ogImage : [null];
     ogObject.ogImageWidth = ogObject.ogImageWidth ? ogObject.ogImageWidth : [null];
@@ -79,12 +80,13 @@ exports.mediaSetup = (ogObject, options) => {
     ogObject.ogImageType = ogObject.ogImageType ? ogObject.ogImageType : [null];
   }
 
-  // format images
-  const ogImages = zip(ogObject.ogImage, ogObject.ogImageWidth, ogObject.ogImageHeight, ogObject.ogImageType)
-    .map(mediaMapper)
-    .sort(mediaSorter);
+  const ogImages = zip(
+    toArray(ogObject.ogImage),
+    toArray(ogObject.ogImageWidth),
+    toArray(ogObject.ogImageHeight),
+    toArray(ogObject.ogImageType),
+  ).map(mediaMapper).sort(mediaSorter);
 
-  // sets ogVideo video/width/height/type to null if one these exists
   if (ogObject.ogVideo || ogObject.ogVideoWidth || ogObject.ogVideoHeight || ogObject.ogVideoType) {
     ogObject.ogVideo = ogObject.ogVideo ? ogObject.ogVideo : [null];
     ogObject.ogVideoWidth = ogObject.ogVideoWidth ? ogObject.ogVideoWidth : [null];
@@ -92,51 +94,65 @@ exports.mediaSetup = (ogObject, options) => {
     ogObject.ogVideoType = ogObject.ogVideoType ? ogObject.ogVideoType : [null];
   }
 
-  // format videos
-  const ogVideos = zip(ogObject.ogVideo, ogObject.ogVideoWidth, ogObject.ogVideoHeight, ogObject.ogVideoType)
-    .map(mediaMapper)
-    .sort(mediaSorter);
+  const ogVideos = zip(
+    toArray(ogObject.ogVideo),
+    toArray(ogObject.ogVideoWidth),
+    toArray(ogObject.ogVideoHeight),
+    toArray(ogObject.ogVideoType),
+  ).map(mediaMapper).sort(mediaSorter);
 
-  // sets twitter image image/width/height/type to null if one these exists
-  if (ogObject.twitterImageSrc || ogObject.twitterImage || ogObject.twitterImageWidth || ogObject.twitterImageHeight || ogObject.twitterImageAlt) {
+  if (
+    ogObject.twitterImageSrc
+    || ogObject.twitterImage
+    || ogObject.twitterImageWidth
+    || ogObject.twitterImageHeight
+    || ogObject.twitterImageAlt
+  ) {
     ogObject.twitterImageSrc = ogObject.twitterImageSrc ? ogObject.twitterImageSrc : [null];
-    ogObject.twitterImage = ogObject.twitterImage ? ogObject.twitterImage : ogObject.twitterImageSrc; // deafult to twitterImageSrc
+    ogObject.twitterImage = ogObject.twitterImage ? ogObject.twitterImage : ogObject.twitterImageSrc;
     ogObject.twitterImageWidth = ogObject.twitterImageWidth ? ogObject.twitterImageWidth : [null];
     ogObject.twitterImageHeight = ogObject.twitterImageHeight ? ogObject.twitterImageHeight : [null];
     ogObject.twitterImageAlt = ogObject.twitterImageAlt ? ogObject.twitterImageAlt : [null];
   }
 
-  // format twitter images
-  const twitterImages = zip(ogObject.twitterImage, ogObject.twitterImageWidth, ogObject.twitterImageHeight, ogObject.twitterImageAlt)
-    .map(mediaMapperTwitterImage)
-    .sort(mediaSorter);
+  const twitterImages = zip(
+    toArray(ogObject.twitterImage),
+    toArray(ogObject.twitterImageWidth),
+    toArray(ogObject.twitterImageHeight),
+    toArray(ogObject.twitterImageAlt),
+  ).map(mediaMapperTwitterImage).sort(mediaSorter);
 
-  // sets twitter player/width/height/stream to null if one these exists
-  if (ogObject.twitterPlayer || ogObject.twitterPlayerWidth || ogObject.twitterPlayerHeight || ogObject.twitterPlayerStream) {
+  if (
+    ogObject.twitterPlayer
+    || ogObject.twitterPlayerWidth
+    || ogObject.twitterPlayerHeight
+    || ogObject.twitterPlayerStream
+  ) {
     ogObject.twitterPlayer = ogObject.twitterPlayer ? ogObject.twitterPlayer : [null];
     ogObject.twitterPlayerWidth = ogObject.twitterPlayerWidth ? ogObject.twitterPlayerWidth : [null];
     ogObject.twitterPlayerHeight = ogObject.twitterPlayerHeight ? ogObject.twitterPlayerHeight : [null];
     ogObject.twitterPlayerStream = ogObject.twitterPlayerStream ? ogObject.twitterPlayerStream : [null];
   }
 
-  // format twitter player
-  const twitterPlayers = zip(ogObject.twitterPlayer, ogObject.twitterPlayerWidth, ogObject.twitterPlayerHeight, ogObject.twitterPlayerStream)
-    .map(mediaMapperTwitterPlayer)
-    .sort(mediaSorter);
+  const twitterPlayers = zip(
+    toArray(ogObject.twitterPlayer),
+    toArray(ogObject.twitterPlayerWidth),
+    toArray(ogObject.twitterPlayerHeight),
+    toArray(ogObject.twitterPlayerStream),
+  ).map(mediaMapperTwitterPlayer).sort(mediaSorter);
 
-  // sets music song/songTrack/songDisc to null if one these exists
   if (ogObject.musicSong || ogObject.musicSongTrack || ogObject.musicSongDisc) {
     ogObject.musicSong = ogObject.musicSong ? ogObject.musicSong : [null];
     ogObject.musicSongTrack = ogObject.musicSongTrack ? ogObject.musicSongTrack : [null];
     ogObject.musicSongDisc = ogObject.musicSongDisc ? ogObject.musicSongDisc : [null];
   }
 
-  // format music songs
-  const musicSongs = zip(ogObject.musicSong, ogObject.musicSongTrack, ogObject.musicSongDisc)
-    .map(mediaMapperMusicSong)
-    .sort(mediaSorterMusicSong);
+  const musicSongs = zip(
+    toArray(ogObject.musicSong),
+    toArray(ogObject.musicSongTrack),
+    toArray(ogObject.musicSongDisc),
+  ).map(mediaMapperMusicSong).sort(mediaSorterMusicSong);
 
-  // remove old values since everything will live under the main property
   fields.filter((item) => (item.multiple && item.fieldName && item.fieldName.match('(ogImage|ogVideo|twitter|musicSong).*')))
     .forEach((item) => {
       delete ogObject[item.fieldName];

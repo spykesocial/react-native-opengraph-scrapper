@@ -1,4 +1,4 @@
-const ogs = require('../../index');
+import ogs from '@spykesocial/react-native-opengraph-scrapper';
 
 describe('image', function () {
   it('Test Flickr Image - Should Return correct Open Graph Info', function () {

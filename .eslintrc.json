@@ -1,14 +1,22 @@
 {
   "extends": [
     "airbnb-base",
+    "plugin:@typescript-eslint/recommended",
     "plugin:mocha/recommended"
   ],
   "plugins": [
+    "@typescript-eslint",
     "mocha"
   ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
   "env": {
-    "commonjs": true,
+    "es2022": true,
     "node": true,
+    "browser": true,
     "mocha": true
   },
   "rules": {
@@ -17,6 +25,10 @@
       "ignoreStrings": true,
       "ignoreTrailingComments": true
     }],
+    "consistent-return": "off",
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
     "no-param-reassign": "off"
   }
 }

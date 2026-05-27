@@ -1,4 +1,4 @@
-const ogs = require('../../index');
+import ogs from '@spykesocial/react-native-opengraph-scrapper';
 
 describe('url', function () {
   it('http', function () {

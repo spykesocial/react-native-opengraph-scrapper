@@ -1,4 +1,6 @@
-module.exports = [
+import type { MetaTagDefinition } from './types.js';
+
+const fields: MetaTagDefinition[] = [
   {
     multiple: false,
     property: 'og:title',
@@ -835,3 +837,5 @@ module.exports = [
     fieldName: 'alWebShouldFallback',
   },
 ];
+
+export default fields;

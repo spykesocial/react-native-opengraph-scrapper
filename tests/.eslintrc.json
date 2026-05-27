@@ -4,7 +4,6 @@
     "plugin:mocha/recommended"
   ],
   "env": {
-    "commonjs": true,
     "node": true,
     "mocha": true
   },
@@ -16,6 +15,11 @@
     "func-names": 0,
     "no-console": 0,
     "no-unused-expressions": 0,
+    "@typescript-eslint/no-unused-expressions": 0,
+    "import/no-unresolved": 0,
+    "max-len": 0,
+    "mocha/consistent-spacing-between-blocks": 0,
+    "mocha/no-skipped-tests": 0,
     "prefer-arrow-callback": 0,
     "promise/always-return": 0
   }

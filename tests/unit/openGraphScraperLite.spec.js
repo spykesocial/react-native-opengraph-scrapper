@@ -1,8 +1,5 @@
-/* eslint-disable import/no-unresolved */
-const chardet = require('chardet');
-const openGraphScraper = require('../../index');
-const charset = require('../../lib/charset');
-const { createMockFetchResponse } = require('../helpers/mockFetch');
+import openGraphScraper from '@spykesocial/react-native-opengraph-scrapper';
+import { createMockFetchResponse } from '../helpers/mockFetch.js';
 
 const basicHTML = `
   <html>
@@ -349,11 +346,9 @@ describe('return openGraphScraper', function () {
       });
     });
 
-    context('when charset and chardet are unknown', function () {
+    context('when charset is detected from the response body', function () {
       beforeEach(async function () {
         sandbox.stub(global, 'fetch').resolves(createMockFetchResponse(basicHTML));
-        sandbox.stub(chardet, 'detect').returns(false);
-        sandbox.stub(charset, 'find').returns(false);
       });
       it('using callbacks', function () {
         return openGraphScraper({ url: 'www.test.com' }, function (error, result, response) {

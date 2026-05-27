@@ -1,5 +1,5 @@
 /* eslint-disable mocha/no-setup-in-describe */
-const utils = require('../../lib/utils');
+import * as utils from '../../dist/utils.js';
 
 const validateUrl = (urls, valid, message, urlValidatorSettings) => {
   for (let index = 0; index < urls.length; index += 1) {

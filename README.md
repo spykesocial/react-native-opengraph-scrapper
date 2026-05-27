@@ -1,76 +1,117 @@
-# React-Native-OpenGraph-Scrapper
+# React Native OpenGraph Scrapper
 
-A pure javascript react-native module for scraping OpenGraph metadata and Twitter Card info off a site.  
+A TypeScript-friendly React Native package for scraping Open Graph metadata and Twitter Card information from a URL or HTML string.
 
 ## Installation
 
 ```bash
-  npm install @spykesocial/react-native-opengraph-scrapper
+npm install @spykesocial/react-native-opengraph-scrapper
 ```
 
 ## Usage
 
-Callback Example:
-```javascript
-const getOpenGraphData = require('@spykesocial/react-native-opengraph-scrapper');
-const options = { url: 'http://ogp.me/' };
-getOpenGraphData(options, (error, results, response) => {
-    console.log('error:', error); // This is returns true or false. True if there was a error. The error it self is inside the results object.
-    console.log('results:', results); // This contains all of the Open Graph results
-    console.log('response:', response); // This contains the HTML of page
-  });
+Use a normal React Native or TypeScript import:
+
+```ts
+import getOpenGraphData from '@spykesocial/react-native-opengraph-scrapper';
+
+const { error, result, response } = await getOpenGraphData({
+  url: 'https://ogp.me/',
+});
+
+console.log(error);
+console.log(result);
+console.log(response);
 ```
 
-Promise Example:
-```javascript
-const getOpenGraphData = require('@spykesocial/react-native-opengraph-scrapper');
-const options = { url: 'http://ogp.me/' };
-getOpenGraphData(options)
-  .then((data) => {
-    const { error, result, response } = data;
-    console.log('error:', error);  // This is returns true or false. True if there was a error. The error it self is inside the results object.
-    console.log('result:', result); // This contains all of the Open Graph results
-    console.log('response:', response); // This contains the HTML of page
-  })
+Named import is also supported:
+
+```ts
+import { run } from '@spykesocial/react-native-opengraph-scrapper';
 ```
 
-## Results JSON
+Callback usage is still supported for existing callers:
 
-Check the return for a ```success``` flag. If success is set to true, then the url input was valid. Otherwise it will be set to false. The above example will return something like...
-```javascript
+```ts
+import getOpenGraphData from '@spykesocial/react-native-opengraph-scrapper';
+
+getOpenGraphData({ url: 'https://ogp.me/' }, (error, result, response) => {
+  console.log('error:', error);
+  console.log('result:', result);
+  console.log('response:', response);
+});
+```
+
+## React Native Notes
+
+The package uses the runtime `fetch`, `AbortController`, `setTimeout`, and `TextDecoder` APIs instead of Node HTTP modules. Modern React Native versions provide `fetch`; if your app targets an older runtime, add the missing polyfills in your app entry file.
+
+The package publishes ESM, CommonJS, and TypeScript declarations:
+
+```ts
+import getOpenGraphData from '@spykesocial/react-native-opengraph-scrapper';
+```
+
+CommonJS consumers can still use:
+
+```js
+const getOpenGraphData = require('@spykesocial/react-native-opengraph-scrapper');
+```
+
+## Result Shape
+
+Successful promise calls resolve with:
+
+```ts
 {
-  ogTitle: 'Open Graph protocol',
-  ogType: 'website',
-  ogUrl: 'http://ogp.me/',
-  ogDescription: 'The Open Graph protocol enables any web page to become a rich object in a social graph.',
-  ogImage: {
-    url: 'http://ogp.me/logo.png',
-    width: '300',
-    height: '300',
-    type: 'image/png'
+  error: false,
+  result: {
+    ogTitle: 'Open Graph protocol',
+    ogType: 'website',
+    ogUrl: 'https://ogp.me/',
+    ogDescription: 'The Open Graph protocol enables any web page to become a rich object in a social graph.',
+    ogImage: {
+      url: 'https://ogp.me/logo.png',
+      width: '300',
+      height: '300',
+      type: 'image/png',
+    },
+    requestUrl: 'https://ogp.me/',
+    success: true,
   },
-  requestUrl: 'http://ogp.me/',
-  success: true
+  response,
+}
+```
+
+Failed promise calls reject with:
+
+```ts
+{
+  error: true,
+  result: {
+    success: false,
+    requestUrl: 'https://example.com',
+    error: 'Page not found',
+    errorDetails: Error,
+  },
 }
 ```
 
 ## Options
-| Name                 | Info                                                                       | Default Value | Required |
-|----------------------|----------------------------------------------------------------------------|---------------|----------|
-| url                  | URL of the site.                                                           |               | x        |
-| timeout              | Timeout of the request                                                     | 2000 ms       |          |
-| html                 | You can pass in an HTML string to run ogs on it. (use without options.url) |               |          |
-| blacklist            | Pass in an array of sites you don't want ogs to run on.                    | []            |          |
-| onlyGetOpenGraphInfo | Only fetch open graph info and don't fall back on anything else.           | false         |          |
-| ogImageFallback      | Fetch other images if no open graph ones are found.                        | true          |          |
-| customMetaTags       | Here you can define custom meta tags you want to scrape.                   | []            |          |
-| allMedia             | By default, OGS will only send back the first image/video it finds         | false         |          |
-| retry                | Number of times ogs will retry the request.                                | 2             |          |
-| headers              | An object containing request headers. Useful for setting the user-agent    | {}            |          |
-| peekSize             | Sets the peekSize for the request                                          | 1024          |          |
-| urlValidatorSettings | Sets the options used by validator.js for testing the URL                  | [Here](https://github.com/jshemas/openGraphScraper/blob/master/lib/openGraphScraper.js#L21-L36)          |          |
 
-
-
+| Name | Info | Default Value | Required |
+| --- | --- | --- | --- |
+| `url` | URL of the site to scrape. Use either `url` or `html`, not both. | | Yes, unless `html` is set |
+| `html` | HTML string to parse without making a network request. | | Yes, unless `url` is set |
+| `timeout` | Request timeout in milliseconds. | `2000` | |
+| `blacklist` | Hostnames or URL fragments that should not be scraped. | `[]` | |
+| `onlyGetOpenGraphInfo` | Only read Open Graph tags and skip fallback parsing. | `false` | |
+| `ogImageFallback` | Use page images when no Open Graph image exists. | `true` | |
+| `customMetaTags` | Additional meta tags to scrape. | `[]` | |
+| `allMedia` | Return every image/video/player instead of only the first. | `false` | |
+| `retry` | Reserved for compatibility with older options. | `2` | |
+| `headers` | Request headers, such as a custom user agent. | `{}` | |
+| `peekSize` | Number of bytes/chars used when detecting charset. | `1024` | |
+| `urlValidatorSettings` | Options passed to `validator.isURL`. | Default URL validation settings | |
 
 [Thanks](https://github.com/chrisuehlinger/openGraphScraperLite)

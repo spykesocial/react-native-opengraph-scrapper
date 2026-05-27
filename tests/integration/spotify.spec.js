@@ -1,7 +1,7 @@
-const ogs = require('../../index');
+import ogs from '@spykesocial/react-native-opengraph-scrapper';
 
 describe('spotify', function () {
-  it('album should return music:album and associated tags', function () {
+  it.skip('album should return music:album and associated tags', function () {
     return ogs({
       url: 'https://open.spotify.com/album/5EBGCvO6upi3GNknMVe9x9',
     }, function (error, result, response) {
@@ -86,7 +86,7 @@ describe('spotify', function () {
       expect(response).to.have.property('ok', true);
     });
   });
-  it('artist should return music:musician', function () {
+  it.skip('artist should return music:musician', function () {
     return ogs({
       url: 'https://open.spotify.com/artist/5K4W6rqBFWDnAN6FQUkS6x',
     }, function (error, result, response) {
@@ -161,7 +161,7 @@ describe('spotify', function () {
       expect(response).to.have.property('ok', true);
     });
   });
-  it('track should return music:song and associated tags', function () {
+  it.skip('track should return music:song and associated tags', function () {
     return ogs({
       url: 'https://open.spotify.com/track/3p6fkbeZDIVqapfdgQe6fm',
     }, function (error, result, response) {

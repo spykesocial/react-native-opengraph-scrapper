@@ -1,4 +1,4 @@
-const ogs = require('../../index');
+import ogs from '@spykesocial/react-native-opengraph-scrapper';
 
 describe('twitter', function () {
   context('Should Return correct Open Graph Info + Some Twitter Info ', function () {

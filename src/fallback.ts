@@ -1,15 +1,16 @@
-const { findImageTypeFromUrl, isImageTypeValid, isUrlValid } = require('./utils');
+import type { CheerioAPI } from 'cheerio';
+import type { OpenGraphResult, OpenGraphScraperOptions } from './types.js';
+import { findImageTypeFromUrl, isImageTypeValid, isUrlValid } from './utils.js';
 
-const doesElementExist = (selector, attribute, $) => (
-  $(selector).attr(attribute) && $(selector).attr(attribute).length > 0
+const doesElementExist = (selector: unknown, attribute: string, $: CheerioAPI) => (
+  $(selector as never).attr(attribute) && $(selector as never).attr(attribute)!.length > 0
 );
 
-const fallback = (ogObject, options, $) => {
-  // title fallback
+const fallback = (ogObject: OpenGraphResult, options: OpenGraphScraperOptions, $: CheerioAPI) => {
   if (!ogObject.ogTitle) {
     if ($('title').text() && $('title').text().length > 0) {
       ogObject.ogTitle = $('title').text();
-    } else if ($('head > meta[name="title"]').attr('content') && $('head > meta[name="title"]').attr('content').length > 0) {
+    } else if ($('head > meta[name="title"]').attr('content') && $('head > meta[name="title"]').attr('content')!.length > 0) {
       ogObject.ogTitle = $('head > meta[name="title"]').attr('content');
     } else if ($('.post-title').text() && $('.post-title').text().length > 0) {
       ogObject.ogTitle = $('.post-title').text();
@@ -22,7 +23,6 @@ const fallback = (ogObject, options, $) => {
     }
   }
 
-  // Get meta description tag if og description was not provided
   if (!ogObject.ogDescription) {
     if (doesElementExist('head > meta[name="description"]', 'content', $)) {
       ogObject.ogDescription = $('head > meta[name="description"]').attr('content');
@@ -33,15 +33,14 @@ const fallback = (ogObject, options, $) => {
     }
   }
 
-  // Get all of images if there is no og:image info
   if (!ogObject.ogImage && options.ogImageFallback) {
     ogObject.ogImage = [];
     $('img').map((index, imageElement) => {
       if (doesElementExist(imageElement, 'src', $)) {
-        const source = $(imageElement).attr('src');
+        const source = $(imageElement).attr('src')!;
         const type = findImageTypeFromUrl(source);
         if (!isUrlValid(source, options.urlValidatorSettings) || !isImageTypeValid(type)) return false;
-        ogObject.ogImage.push({
+        (ogObject.ogImage as unknown[]).push({
           url: source,
           width: $(imageElement).attr('width') || null,
           height: $(imageElement).attr('height') || null,
@@ -50,28 +49,29 @@ const fallback = (ogObject, options, $) => {
       }
       return false;
     });
-    if (ogObject.ogImage.length === 0) delete ogObject.ogImage;
+    if ((ogObject.ogImage as unknown[]).length === 0) delete ogObject.ogImage;
   } else if (ogObject.ogImage) {
-    // if there isn't a type, try to pull it from the URL
     if (Array.isArray(ogObject.ogImage)) {
       ogObject.ogImage.map((image) => {
-        if (image.url && !image.type) {
+        if (typeof image === 'object' && image && image.url && !image.type) {
           const type = findImageTypeFromUrl(image.url);
           if (isImageTypeValid(type)) image.type = type;
         }
         return false;
       });
-    } else if (ogObject.ogImage.url && !ogObject.ogImage.type) {
-      const type = findImageTypeFromUrl(ogObject.ogImage.url);
-      if (isImageTypeValid(type)) ogObject.ogImage.type = type;
+    } else if (typeof ogObject.ogImage === 'object' && ogObject.ogImage) {
+      const image = ogObject.ogImage as { url?: string; type?: string };
+      if (image.url && !image.type) {
+        const type = findImageTypeFromUrl(image.url);
+        if (isImageTypeValid(type)) image.type = type;
+      }
     }
   }
 
-  // audio fallback
   if (!ogObject.ogAudioURL && !ogObject.ogAudioSecureURL) {
     const audioElementValue = $('audio').attr('src');
     const audioSourceElementValue = $('audio > source').attr('src');
-    if (doesElementExist('audio', 'src', $)) {
+    if (doesElementExist('audio', 'src', $) && audioElementValue) {
       if (audioElementValue.startsWith('https')) {
         ogObject.ogAudioSecureURL = audioElementValue;
       } else {
@@ -79,7 +79,7 @@ const fallback = (ogObject, options, $) => {
       }
       const audioElementTypeValue = $('audio').attr('type');
       if (!ogObject.ogAudioType && doesElementExist('audio', 'type', $)) ogObject.ogAudioType = audioElementTypeValue;
-    } else if (doesElementExist('audio > source', 'src', $)) {
+    } else if (doesElementExist('audio > source', 'src', $) && audioSourceElementValue) {
       if (audioSourceElementValue.startsWith('https')) {
         ogObject.ogAudioSecureURL = audioSourceElementValue;
       } else {
@@ -90,7 +90,6 @@ const fallback = (ogObject, options, $) => {
     }
   }
 
-  // locale fallback
   if (!ogObject.ogLocale) {
     if (doesElementExist('html', 'lang', $)) {
       ogObject.ogLocale = $('html').attr('lang');
@@ -99,7 +98,6 @@ const fallback = (ogObject, options, $) => {
     }
   }
 
-  // logo fallback
   if (!ogObject.ogLogo) {
     if (doesElementExist('meta[itemprop="logo"]', 'content', $)) {
       ogObject.ogLogo = $('meta[itemprop="logo"]').attr('content');
@@ -108,7 +106,6 @@ const fallback = (ogObject, options, $) => {
     }
   }
 
-  // url fallback
   if (!ogObject.ogUrl) {
     if (doesElementExist('link[rel="canonical"]', 'href', $)) {
       ogObject.ogUrl = $('link[rel="canonical"]').attr('href');
@@ -117,7 +114,6 @@ const fallback = (ogObject, options, $) => {
     }
   }
 
-  // date fallback
   if (!ogObject.ogDate) {
     if (doesElementExist('head > meta[name="date"]', 'content', $)) {
       ogObject.ogDate = $('head > meta[name="date"]').attr('content');
@@ -137,4 +133,4 @@ const fallback = (ogObject, options, $) => {
   return ogObject;
 };
 
-module.exports = fallback;
+export default fallback;

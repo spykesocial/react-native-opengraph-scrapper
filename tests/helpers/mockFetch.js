@@ -14,22 +14,20 @@ function createHeaders(headers = {}) {
   };
 }
 
-function createMockFetchResponse(body, options = {}) {
+export function createMockFetchResponse(body, options = {}) {
   const {
     status = 200,
     headers = { 'content-type': 'text/html; charset=utf-8' },
   } = options;
   const textBody = Buffer.isBuffer(body) ? body.toString('utf8') : body;
+  const encodedBody = new TextEncoder().encode(textBody);
 
   return {
     status,
     ok: status >= 200 && status < 300,
     headers: createHeaders(headers),
     body: textBody,
+    arrayBuffer: async () => encodedBody.buffer,
     text: async () => textBody,
   };
 }
-
-module.exports = {
-  createMockFetchResponse,
-};
