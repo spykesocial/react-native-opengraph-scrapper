@@ -37,7 +37,7 @@ describe('timeout', function () {
       expect(result.success).to.be.eql(false);
       expect(result.requestUrl).to.be.eql('http://www.wikipedia.org/');
       expect(result.error).to.eql('Time out');
-      expect(result.errorDetails.toString()).to.eql('Error: Time out');
+      expect(scraperError(result).toString()).to.eql('Error: Time out');
       expect(result).to.include.all.keys(
         'error',
         'errorDetails',

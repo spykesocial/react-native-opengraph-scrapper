@@ -1,7 +1,7 @@
 import * as chardet from 'chardet';
 import { find as findCharset } from './charset.js';
 import { extractMetaTags } from './extract.js';
-import type { InternalScraperResult, OpenGraphScraperOptions } from './types.js';
+import type { InternalScraperResult, OpenGraphScraperOptions, ScraperResponse } from './types.js';
 
 function headersToObject(responseHeaders: Headers) {
   const headers: Record<string, string> = {};
@@ -13,7 +13,7 @@ function headersToObject(responseHeaders: Headers) {
   return headers;
 }
 
-function buildFetchOptions(options: Required<Pick<OpenGraphScraperOptions, 'timeout' | 'headers'>>) {
+function buildFetchOptions(options: { timeout: number; headers: Record<string, string> }) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), options.timeout);
 
@@ -103,5 +103,5 @@ export const requestAndResultsFormatter = async (
   ogObject.requestUrl = options.url;
   ogObject.success = true;
 
-  return { ogObject, response };
+  return { ogObject, response: response as ScraperResponse };
 };

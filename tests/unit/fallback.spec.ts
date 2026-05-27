@@ -1,6 +1,6 @@
 import * as cheerio from 'cheerio';
 
-import fallback from '../../dist/fallback.js';
+import fallback from '../../src/fallback.js';
 import type { OpenGraphResult, MediaResult } from '../../src/types.js';
 
 describe('fallback', function () {

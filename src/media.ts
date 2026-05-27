@@ -73,89 +73,91 @@ const zip = (
 };
 
 export const mediaSetup = (ogObject: OpenGraphResult, options: OpenGraphScraperOptions) => {
-  if (ogObject.ogImage || ogObject.ogImageWidth || ogObject.twitterImageHeight || ogObject.ogImageType) {
-    ogObject.ogImage = ogObject.ogImage ? ogObject.ogImage : [null];
-    ogObject.ogImageWidth = ogObject.ogImageWidth ? ogObject.ogImageWidth : [null];
-    ogObject.ogImageHeight = ogObject.ogImageHeight ? ogObject.ogImageHeight : [null];
-    ogObject.ogImageType = ogObject.ogImageType ? ogObject.ogImageType : [null];
+  const meta: Record<string, unknown> = ogObject;
+
+  if (meta.ogImage || meta.ogImageWidth || meta.twitterImageHeight || meta.ogImageType) {
+    meta.ogImage = meta.ogImage ? meta.ogImage : [null];
+    meta.ogImageWidth = meta.ogImageWidth ? meta.ogImageWidth : [null];
+    meta.ogImageHeight = meta.ogImageHeight ? meta.ogImageHeight : [null];
+    meta.ogImageType = meta.ogImageType ? meta.ogImageType : [null];
   }
 
   const ogImages = zip(
-    toArray(ogObject.ogImage),
-    toArray(ogObject.ogImageWidth),
-    toArray(ogObject.ogImageHeight),
-    toArray(ogObject.ogImageType),
+    toArray(meta.ogImage),
+    toArray(meta.ogImageWidth),
+    toArray(meta.ogImageHeight),
+    toArray(meta.ogImageType),
   ).map(mediaMapper).sort(mediaSorter);
 
-  if (ogObject.ogVideo || ogObject.ogVideoWidth || ogObject.ogVideoHeight || ogObject.ogVideoType) {
-    ogObject.ogVideo = ogObject.ogVideo ? ogObject.ogVideo : [null];
-    ogObject.ogVideoWidth = ogObject.ogVideoWidth ? ogObject.ogVideoWidth : [null];
-    ogObject.ogVideoHeight = ogObject.ogVideoHeight ? ogObject.ogVideoHeight : [null];
-    ogObject.ogVideoType = ogObject.ogVideoType ? ogObject.ogVideoType : [null];
+  if (meta.ogVideo || meta.ogVideoWidth || meta.ogVideoHeight || meta.ogVideoType) {
+    meta.ogVideo = meta.ogVideo ? meta.ogVideo : [null];
+    meta.ogVideoWidth = meta.ogVideoWidth ? meta.ogVideoWidth : [null];
+    meta.ogVideoHeight = meta.ogVideoHeight ? meta.ogVideoHeight : [null];
+    meta.ogVideoType = meta.ogVideoType ? meta.ogVideoType : [null];
   }
 
   const ogVideos = zip(
-    toArray(ogObject.ogVideo),
-    toArray(ogObject.ogVideoWidth),
-    toArray(ogObject.ogVideoHeight),
-    toArray(ogObject.ogVideoType),
+    toArray(meta.ogVideo),
+    toArray(meta.ogVideoWidth),
+    toArray(meta.ogVideoHeight),
+    toArray(meta.ogVideoType),
   ).map(mediaMapper).sort(mediaSorter);
 
   if (
-    ogObject.twitterImageSrc
-    || ogObject.twitterImage
-    || ogObject.twitterImageWidth
-    || ogObject.twitterImageHeight
-    || ogObject.twitterImageAlt
+    meta.twitterImageSrc
+    || meta.twitterImage
+    || meta.twitterImageWidth
+    || meta.twitterImageHeight
+    || meta.twitterImageAlt
   ) {
-    ogObject.twitterImageSrc = ogObject.twitterImageSrc ? ogObject.twitterImageSrc : [null];
-    ogObject.twitterImage = ogObject.twitterImage ? ogObject.twitterImage : ogObject.twitterImageSrc;
-    ogObject.twitterImageWidth = ogObject.twitterImageWidth ? ogObject.twitterImageWidth : [null];
-    ogObject.twitterImageHeight = ogObject.twitterImageHeight ? ogObject.twitterImageHeight : [null];
-    ogObject.twitterImageAlt = ogObject.twitterImageAlt ? ogObject.twitterImageAlt : [null];
+    meta.twitterImageSrc = meta.twitterImageSrc ? meta.twitterImageSrc : [null];
+    meta.twitterImage = meta.twitterImage ? meta.twitterImage : meta.twitterImageSrc;
+    meta.twitterImageWidth = meta.twitterImageWidth ? meta.twitterImageWidth : [null];
+    meta.twitterImageHeight = meta.twitterImageHeight ? meta.twitterImageHeight : [null];
+    meta.twitterImageAlt = meta.twitterImageAlt ? meta.twitterImageAlt : [null];
   }
 
   const twitterImages = zip(
-    toArray(ogObject.twitterImage),
-    toArray(ogObject.twitterImageWidth),
-    toArray(ogObject.twitterImageHeight),
-    toArray(ogObject.twitterImageAlt),
+    toArray(meta.twitterImage),
+    toArray(meta.twitterImageWidth),
+    toArray(meta.twitterImageHeight),
+    toArray(meta.twitterImageAlt),
   ).map(mediaMapperTwitterImage).sort(mediaSorter);
 
   if (
-    ogObject.twitterPlayer
-    || ogObject.twitterPlayerWidth
-    || ogObject.twitterPlayerHeight
-    || ogObject.twitterPlayerStream
+    meta.twitterPlayer
+    || meta.twitterPlayerWidth
+    || meta.twitterPlayerHeight
+    || meta.twitterPlayerStream
   ) {
-    ogObject.twitterPlayer = ogObject.twitterPlayer ? ogObject.twitterPlayer : [null];
-    ogObject.twitterPlayerWidth = ogObject.twitterPlayerWidth ? ogObject.twitterPlayerWidth : [null];
-    ogObject.twitterPlayerHeight = ogObject.twitterPlayerHeight ? ogObject.twitterPlayerHeight : [null];
-    ogObject.twitterPlayerStream = ogObject.twitterPlayerStream ? ogObject.twitterPlayerStream : [null];
+    meta.twitterPlayer = meta.twitterPlayer ? meta.twitterPlayer : [null];
+    meta.twitterPlayerWidth = meta.twitterPlayerWidth ? meta.twitterPlayerWidth : [null];
+    meta.twitterPlayerHeight = meta.twitterPlayerHeight ? meta.twitterPlayerHeight : [null];
+    meta.twitterPlayerStream = meta.twitterPlayerStream ? meta.twitterPlayerStream : [null];
   }
 
   const twitterPlayers = zip(
-    toArray(ogObject.twitterPlayer),
-    toArray(ogObject.twitterPlayerWidth),
-    toArray(ogObject.twitterPlayerHeight),
-    toArray(ogObject.twitterPlayerStream),
+    toArray(meta.twitterPlayer),
+    toArray(meta.twitterPlayerWidth),
+    toArray(meta.twitterPlayerHeight),
+    toArray(meta.twitterPlayerStream),
   ).map(mediaMapperTwitterPlayer).sort(mediaSorter);
 
-  if (ogObject.musicSong || ogObject.musicSongTrack || ogObject.musicSongDisc) {
-    ogObject.musicSong = ogObject.musicSong ? ogObject.musicSong : [null];
-    ogObject.musicSongTrack = ogObject.musicSongTrack ? ogObject.musicSongTrack : [null];
-    ogObject.musicSongDisc = ogObject.musicSongDisc ? ogObject.musicSongDisc : [null];
+  if (meta.musicSong || meta.musicSongTrack || meta.musicSongDisc) {
+    meta.musicSong = meta.musicSong ? meta.musicSong : [null];
+    meta.musicSongTrack = meta.musicSongTrack ? meta.musicSongTrack : [null];
+    meta.musicSongDisc = meta.musicSongDisc ? meta.musicSongDisc : [null];
   }
 
   const musicSongs = zip(
-    toArray(ogObject.musicSong),
-    toArray(ogObject.musicSongTrack),
-    toArray(ogObject.musicSongDisc),
+    toArray(meta.musicSong),
+    toArray(meta.musicSongTrack),
+    toArray(meta.musicSongDisc),
   ).map(mediaMapperMusicSong).sort(mediaSorterMusicSong);
 
   fields.filter((item) => (item.multiple && item.fieldName && item.fieldName.match('(ogImage|ogVideo|twitter|musicSong).*')))
     .forEach((item) => {
-      delete ogObject[item.fieldName];
+      delete meta[item.fieldName];
     });
 
   if (options.allMedia) {

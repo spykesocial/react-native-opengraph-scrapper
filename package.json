@@ -20,7 +20,7 @@
     "build": "tsup && tsx scripts/write-cjs-wrapper.ts",
     "eslint:fix": "eslint \"src/**/*.ts\" \"tests/**/*.ts\" \"scripts/**/*.ts\" --fix",
     "eslint": "eslint \"src/**/*.ts\" \"tests/**/*.ts\" \"scripts/**/*.ts\"",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tests.json",
     "mocha:unit": "npm run build && c8 --reporter=html --reporter=text mocha --import=tsx --require ./tests/helpers/bootstrap.ts --recursive \"./tests/unit/**/*.spec.ts\"",
     "mocha:int": "npm run build && mocha --import=tsx --require ./tests/helpers/bootstrap.ts --recursive \"./tests/integration/**/*.spec.ts\" --timeout 10000",
     "mocha:rn": "npm run build && mocha --import=tsx --require ./tests/helpers/bootstrap.ts --recursive \"./tests/react-native/**/*.spec.ts\" --timeout 15000",

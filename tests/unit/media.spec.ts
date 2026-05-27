@@ -1,8 +1,11 @@
 import * as media from '../../dist/media.js';
+import type { OpenGraphResult } from '../../src/types.js';
+
+const asOgObject = (value: Record<string, unknown>): OpenGraphResult => value as OpenGraphResult;
 
 describe('media', function () {
   it('has images and twitter images', function () {
-    const ogMedia = media.mediaSetup({
+    const ogMedia = media.mediaSetup(asOgObject({
       ogImage: ['http://test.com/logo.png'],
       ogImageType: ['image/png'],
       ogImageWidth: ['300'],
@@ -11,7 +14,7 @@ describe('media', function () {
       twitterImageAlt: ['image/png'],
       twitterImageWidth: ['300'],
       twitterImageHeight: ['300'],
-    }, {});
+    }), {});
 
     expect(ogMedia.ogImage).to.eql({
       url: 'http://test.com/logo.png',
@@ -28,7 +31,7 @@ describe('media', function () {
     });
   });
   it('has many images and twitter images', function () {
-    const ogMedia = media.mediaSetup({
+    const ogMedia = media.mediaSetup(asOgObject({
       ogImage: ['http://test.com/logo_one.png', 'http://test.com/logo_two.png', 'http://test.com/logo_two.png', ''],
       ogImageType: ['image/png'],
       ogImageWidth: ['300'],
@@ -37,7 +40,7 @@ describe('media', function () {
       twitterImageAlt: ['image/png'],
       twitterImageWidth: ['300'],
       twitterImageHeight: ['300'],
-    }, {});
+    }), {});
 
     expect(ogMedia.ogImage).to.eql({
       url: 'http://test.com/logo_one.png',
@@ -54,7 +57,7 @@ describe('media', function () {
     });
   });
   it('has a .gif images and twitter images', function () {
-    const ogMedia = media.mediaSetup({
+    const ogMedia = media.mediaSetup(asOgObject({
       ogImage: ['http://test.com/logo_one.png', 'http://test.com/logo_two.gif'],
       ogImageType: ['image/png', 'image/gif'],
       ogImageWidth: ['300', '600'],
@@ -63,7 +66,7 @@ describe('media', function () {
       twitterImageAlt: ['image/gif', 'image/png'],
       twitterImageWidth: ['300', '600'],
       twitterImageHeight: ['300', '600'],
-    }, {});
+    }), {});
 
     expect(ogMedia.ogImage).to.eql({
       url: 'http://test.com/logo_two.gif',
@@ -80,12 +83,12 @@ describe('media', function () {
     });
   });
   it('has no image or video', function () {
-    const ogMedia = media.mediaSetup({
+    const ogMedia = media.mediaSetup(asOgObject({
       ogTitle: 'test site',
       ogType: 'website',
       ogUrl: 'http://test.com/',
       ogDescription: 'stuff',
-    }, {});
+    }), {});
 
     expect(ogMedia.ogImage).to.eql(undefined);
     expect(ogMedia.twitterImage).to.eql(undefined);
@@ -93,7 +96,7 @@ describe('media', function () {
     expect(ogMedia.twitterPlayer).to.eql(undefined);
   });
   it('has video and twitter video', function () {
-    const ogMedia = media.mediaSetup({
+    const ogMedia = media.mediaSetup(asOgObject({
       ogVideo: ['http://test.com/logo.png'],
       ogVideoType: ['image/png'],
       ogVideoWidth: ['300'],
@@ -102,7 +105,7 @@ describe('media', function () {
       twitterPlayerStream: ['image/png'],
       twitterPlayerWidth: ['300'],
       twitterPlayerHeight: ['300'],
-    }, {});
+    }), {});
 
     expect(ogMedia.ogVideo).to.eql({
       url: 'http://test.com/logo.png',
@@ -119,11 +122,11 @@ describe('media', function () {
     });
   });
   it('has music:song', function () {
-    const ogMedia = media.mediaSetup({
+    const ogMedia = media.mediaSetup(asOgObject({
       musicSong: ['http://test.com/songurl'],
       musicSongTrack: ['1'],
       musicSongDisc: ['1'],
-    }, {});
+    }), {});
 
     expect(ogMedia.musicSong).to.eql({
       url: 'http://test.com/songurl',
@@ -132,11 +135,11 @@ describe('media', function () {
     });
   });
   it('has multiple music:songs with allMedia set to true', function () {
-    const ogMedia = media.mediaSetup({
+    const ogMedia = media.mediaSetup(asOgObject({
       musicSong: ['http://test.com/songurl', 'http://test.com/songurl3', 'http://test.com/songurl2', ''],
       musicSongTrack: ['1', '2', '4', ''],
       musicSongDisc: ['1', '2', '1', ''],
-    }, {
+    }), {
       allMedia: true,
     });
 
@@ -162,7 +165,7 @@ describe('media', function () {
     }]);
   });
   it('allMedia set to true', function () {
-    const ogMedia = media.mediaSetup({
+    const ogMedia = media.mediaSetup(asOgObject({
       ogImage: ['http://test.com/logo.png'],
       ogImageType: ['image/png'],
       ogImageWidth: ['300'],
@@ -179,7 +182,7 @@ describe('media', function () {
       twitterPlayerStream: ['image/png'],
       twitterPlayerWidth: ['300'],
       twitterPlayerHeight: ['300'],
-    }, {
+    }), {
       allMedia: true,
     });
 

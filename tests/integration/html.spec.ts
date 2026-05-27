@@ -40,7 +40,7 @@ describe('html', function () {
       expect(result.success).to.be.eql(false);
       expect(result.requestUrl).to.be.eql('https://upload.wikimedia.org/wikipedia/commons.jpg');
       expect(result.error).to.eql('Must specify either `url` or `html`, not both');
-      expect(result.errorDetails.toString()).to.eql('Error: Must specify either `url` or `html`, not both');
+      expect(scraperError(result).toString()).to.eql('Error: Must specify either `url` or `html`, not both');
       expect(result).to.have.all.keys(
         'error',
         'errorDetails',
@@ -60,7 +60,7 @@ describe('html', function () {
       expect(result.success).to.be.eql(false);
       expect(result.requestUrl).to.be.eql('https://upload.wikimedia.org/wikipedia/commons.jpg');
       expect(result.error).to.eql('Must scrape an HTML page');
-      expect(result.errorDetails.toString()).to.eql('Error: Must scrape an HTML page');
+      expect(scraperError(result).toString()).to.eql('Error: Must scrape an HTML page');
       expect(result).to.have.all.keys(
         'error',
         'errorDetails',

@@ -37,7 +37,7 @@ describe('statusCode', function () {
         expect(result.success).to.be.eql(false);
         expect(result.requestUrl).to.be.eql('https://httpbingo.org/status/403');
         expect(result.error).to.eql('Page not found');
-        expect(result.errorDetails.toString()).to.eql('Error: Page not found');
+        expect(scraperError(result).toString()).to.eql('Error: Page not found');
         expect(result).to.have.all.keys(
           'error',
           'errorDetails',
@@ -58,7 +58,7 @@ describe('statusCode', function () {
         expect(result.success).to.be.eql(false);
         expect(result.requestUrl).to.be.eql('https://httpbingo.org/status/500');
         expect(result.error).to.eql('Web server is returning error');
-        expect(result.errorDetails.toString()).to.eql('Error: Web server is returning error');
+        expect(scraperError(result).toString()).to.eql('Error: Web server is returning error');
         expect(result).to.have.all.keys(
           'error',
           'errorDetails',

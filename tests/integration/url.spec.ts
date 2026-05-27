@@ -131,7 +131,7 @@ describe('url', function () {
       expect(result.success).to.be.eql(false);
       expect(result.requestUrl).to.be.eql('http://testtesttest4564568.com');
       expect(result.error).to.eql('Page not found');
-      expect(result.errorDetails.toString()).to.eql('Error: Page not found');
+      expect(scraperError(result).toString()).to.eql('Error: Page not found');
       expect(result).to.include.all.keys(
         'error',
         'errorDetails',
@@ -151,7 +151,7 @@ describe('url', function () {
       expect(result.success).to.be.eql(false);
       expect(result.requestUrl).to.be.eql('');
       expect(result.error).to.eql('Invalid URL');
-      expect(result.errorDetails.toString()).to.eql('Error: Invalid URL');
+      expect(scraperError(result).toString()).to.eql('Error: Invalid URL');
       expect(result).to.include.all.keys(
         'error',
         'errorDetails',
@@ -169,7 +169,7 @@ describe('url', function () {
       expect(result.success).to.be.eql(false);
       expect(result.requestUrl).to.eql(undefined);
       expect(result.error).to.eql('Invalid URL');
-      expect(result.errorDetails.toString()).to.eql('Error: Invalid URL');
+      expect(scraperError(result).toString()).to.eql('Error: Invalid URL');
       expect(result).to.include.all.keys(
         'error',
         'errorDetails',
@@ -189,7 +189,7 @@ describe('url', function () {
       expect(result.success).to.be.eql(false);
       expect(result.requestUrl).to.be.eql(23233);
       expect(result.error).to.eql('Invalid URL');
-      expect(result.errorDetails.toString()).to.eql('Error: Invalid URL');
+      expect(scraperError(result).toString()).to.eql('Error: Invalid URL');
       expect(result).to.include.all.keys(
         'error',
         'errorDetails',
@@ -209,7 +209,7 @@ describe('url', function () {
       expect(result.success).to.be.eql(false);
       expect(result.requestUrl).to.be.eql('2323233');
       expect(result.error).to.eql('Invalid URL');
-      expect(result.errorDetails.toString()).to.eql('Error: Invalid URL');
+      expect(scraperError(result).toString()).to.eql('Error: Invalid URL');
       expect(result).to.include.all.keys(
         'error',
         'errorDetails',
@@ -229,7 +229,7 @@ describe('url', function () {
       expect(result.success).to.be.eql(false);
       expect(result.requestUrl).to.be.eql('this is a test');
       expect(result.error).to.eql('Invalid URL');
-      expect(result.errorDetails.toString()).to.eql('Error: Invalid URL');
+      expect(scraperError(result).toString()).to.eql('Error: Invalid URL');
       expect(result).to.include.all.keys(
         'error',
         'errorDetails',
@@ -262,7 +262,7 @@ describe('url', function () {
       expect(result.success).to.be.eql(false);
       expect(result.requestUrl).to.be.eql('https://www.wikipedia.org/');
       expect(result.error).to.eql('Invalid URL');
-      expect(result.errorDetails.toString()).to.eql('Error: Invalid URL');
+      expect(scraperError(result).toString()).to.eql('Error: Invalid URL');
       expect(result).to.include.all.keys(
         'error',
         'errorDetails',
@@ -282,7 +282,7 @@ describe('url', function () {
       expect(result.success).to.be.eql(false);
       expect(result.requestUrl).to.be.eql('http://test.pdf?123');
       expect(result.error).to.eql('Must scrape an HTML page');
-      expect(result.errorDetails.toString()).to.eql('Error: Must scrape an HTML page');
+      expect(scraperError(result).toString()).to.eql('Error: Must scrape an HTML page');
       expect(result).to.include.all.keys(
         'error',
         'errorDetails',

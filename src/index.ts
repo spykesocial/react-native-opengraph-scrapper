@@ -11,7 +11,7 @@ const buildErrorResult = (options: OpenGraphScraperOptions, exception: unknown):
   success: false,
   requestUrl: options.url,
   error: exception instanceof Error ? exception.message : String(exception),
-  errorDetails: exception,
+  errorDetails: exception instanceof Error ? exception : new Error(String(exception)),
 });
 
 export async function run(
@@ -55,6 +55,7 @@ export async function run(
 export default run;
 export type {
   MediaResult,
+  MediaValue,
   MetaTagDefinition,
   OpenGraphResult,
   OpenGraphScraperCallback,

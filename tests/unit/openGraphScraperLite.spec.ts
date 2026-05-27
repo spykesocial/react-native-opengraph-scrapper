@@ -68,7 +68,7 @@ describe('return openGraphScraper', function () {
           expect(result.success).to.be.eql(true);
           expect(result.ogTitle).to.be.eql('test page');
           expect(result.requestUrl).to.be.eql('http://www.test.com');
-          expect(response.body).to.be.eql(basicHTML);
+          expect(scraperResponse(response).body).to.be.eql(basicHTML);
         });
       });
       it('using promises', function () {
@@ -77,7 +77,7 @@ describe('return openGraphScraper', function () {
             expect(data.result.success).to.be.eql(true);
             expect(data.result.ogTitle).to.be.eql('test page');
             expect(data.result.requestUrl).to.be.eql('http://www.test.com');
-            expect(data.response.body).to.be.eql(basicHTML);
+            expect(scraperResponse(data.response).body).to.be.eql(basicHTML);
           });
       });
     });
@@ -92,7 +92,7 @@ describe('return openGraphScraper', function () {
           expect(result.success).to.be.eql(true);
           expect(result.ogTitle).to.be.eql('test page');
           expect(result.requestUrl).to.be.eql(null);
-          expect(response.body).to.be.eql(basicHTML);
+          expect(scraperResponse(response).body).to.be.eql(basicHTML);
         });
       });
       it('using promises', function () {
@@ -101,7 +101,7 @@ describe('return openGraphScraper', function () {
             expect(data.result.success).to.be.eql(true);
             expect(data.result.ogTitle).to.be.eql('test page');
             expect(data.result.requestUrl).to.be.eql(null);
-            expect(data.response.body).to.be.eql(basicHTML);
+            expect(scraperResponse(data.response).body).to.be.eql(basicHTML);
           });
       });
     });
@@ -116,7 +116,7 @@ describe('return openGraphScraper', function () {
           expect(result.success).to.be.eql(true);
           expect(result.ogTitle).to.be.eql('test page');
           expect(result.requestUrl).to.be.eql('http://www.test.com');
-          expect(response.body).to.be.eql(basicHTML);
+          expect(scraperResponse(response).body).to.be.eql(basicHTML);
         });
       });
       it('using promises', function () {
@@ -125,7 +125,7 @@ describe('return openGraphScraper', function () {
             expect(data.result.success).to.be.eql(true);
             expect(data.result.ogTitle).to.be.eql('test page');
             expect(data.result.requestUrl).to.be.eql('http://www.test.com');
-            expect(data.response.body).to.be.eql(basicHTML);
+            expect(scraperResponse(data.response).body).to.be.eql(basicHTML);
           });
       });
     });
@@ -142,7 +142,7 @@ describe('return openGraphScraper', function () {
           expect(result.ogTitle).to.be.eql('тестовая страница');
           expect(result.ogDescription).to.be.eql('привет тестовая страница<');
           expect(result.requestUrl).to.be.eql('http://www.test.com');
-          expect(response.body).to.be.eql(encodingHTML);
+          expect(scraperResponse(response).body).to.be.eql(encodingHTML);
         });
       });
       it('using promises', function () {
@@ -153,7 +153,7 @@ describe('return openGraphScraper', function () {
             expect(data.result.ogTitle).to.be.eql('тестовая страница');
             expect(data.result.ogDescription).to.be.eql('привет тестовая страница<');
             expect(data.result.requestUrl).to.be.eql('http://www.test.com');
-            expect(data.response.body).to.be.eql(encodingHTML);
+            expect(scraperResponse(data.response).body).to.be.eql(encodingHTML);
           });
       });
     });
@@ -174,7 +174,7 @@ describe('return openGraphScraper', function () {
             type: 'png',
           });
           expect(result.requestUrl).to.be.eql('http://www.test.com');
-          expect(response.body).to.be.eql(multipleImageHTML);
+          expect(scraperResponse(response).body).to.be.eql(multipleImageHTML);
         });
       });
       it('using promises', function () {
@@ -189,7 +189,7 @@ describe('return openGraphScraper', function () {
               type: 'png',
             });
             expect(data.result.requestUrl).to.be.eql('http://www.test.com');
-            expect(data.response.body).to.be.eql(multipleImageHTML);
+            expect(scraperResponse(data.response).body).to.be.eql(multipleImageHTML);
           });
       });
     });
@@ -205,7 +205,7 @@ describe('return openGraphScraper', function () {
           expect(result.ogTitle).to.be.eql('test page');
           expect(result.ogDescription).to.be.eql('test description from meta');
           expect(result.requestUrl).to.be.eql('http://www.test.com');
-          expect(response.body).to.be.eql(metaDescriptionHTML);
+          expect(scraperResponse(response).body).to.be.eql(metaDescriptionHTML);
         });
       });
       it('using promises', function () {
@@ -215,7 +215,7 @@ describe('return openGraphScraper', function () {
             expect(data.result.ogTitle).to.be.eql('test page');
             expect(data.result.ogDescription).to.be.eql('test description from meta');
             expect(data.result.requestUrl).to.be.eql('http://www.test.com');
-            expect(data.response.body).to.be.eql(metaDescriptionHTML);
+            expect(scraperResponse(data.response).body).to.be.eql(metaDescriptionHTML);
           });
       });
     });
@@ -231,7 +231,7 @@ describe('return openGraphScraper', function () {
           expect(result.success).to.be.eql(true);
           expect(result.ogTitle).to.be.eql('test page');
           expect(result.requestUrl).to.be.eql('http://www.test.com');
-          expect(response.body).to.be.eql(basicHTML);
+          expect(scraperResponse(response).body).to.be.eql(basicHTML);
         });
       });
       it('using promises', function () {
@@ -241,7 +241,7 @@ describe('return openGraphScraper', function () {
             expect(data.result.success).to.be.eql(true);
             expect(data.result.ogTitle).to.be.eql('test page');
             expect(data.result.requestUrl).to.be.eql('http://www.test.com');
-            expect(data.response.body).to.be.eql(basicHTML);
+            expect(scraperResponse(data.response).body).to.be.eql(basicHTML);
           });
       });
     });
@@ -257,7 +257,7 @@ describe('return openGraphScraper', function () {
           expect(result.ogTitle).to.be.eql(undefined);
           expect(result.describe).to.be.eql(undefined);
           expect(result.requestUrl).to.be.eql('http://www.test.com');
-          expect(response.body).to.be.eql(metaDescriptionHTML);
+          expect(scraperResponse(response).body).to.be.eql(metaDescriptionHTML);
         });
       });
       it('using promises', function () {
@@ -267,7 +267,7 @@ describe('return openGraphScraper', function () {
             expect(data.result.ogTitle).to.be.eql(undefined);
             expect(data.result.describe).to.be.eql(undefined);
             expect(data.result.requestUrl).to.be.eql('http://www.test.com');
-            expect(data.response.body).to.be.eql(metaDescriptionHTML);
+            expect(scraperResponse(data.response).body).to.be.eql(metaDescriptionHTML);
           });
       });
     });
@@ -292,7 +292,7 @@ describe('return openGraphScraper', function () {
             url: 'test1.png', width: null, height: null, type: 'png',
           });
           expect(result.requestUrl).to.be.eql('http://www.test.com');
-          expect(response.body).to.be.eql(secureUrlHTML);
+          expect(scraperResponse(response).body).to.be.eql(secureUrlHTML);
         });
       });
       it('using promises', function () {
@@ -304,7 +304,7 @@ describe('return openGraphScraper', function () {
               url: 'test1.png', width: null, height: null, type: 'png',
             });
             expect(data.result.requestUrl).to.be.eql('http://www.test.com');
-            expect(data.response.body).to.be.eql(secureUrlHTML);
+            expect(scraperResponse(data.response).body).to.be.eql(secureUrlHTML);
           });
       });
     });
@@ -329,7 +329,7 @@ describe('return openGraphScraper', function () {
             url: 'test1.png', width: null, height: null, type: 'png',
           });
           expect(result.requestUrl).to.be.eql('http://www.test.com');
-          expect(response.body).to.be.eql(secureUrlHTML);
+          expect(scraperResponse(response).body).to.be.eql(secureUrlHTML);
         });
       });
       it('using promises', function () {
@@ -341,7 +341,7 @@ describe('return openGraphScraper', function () {
               url: 'test1.png', width: null, height: null, type: 'png',
             });
             expect(data.result.requestUrl).to.be.eql('http://www.test.com');
-            expect(data.response.body).to.be.eql(secureUrlHTML);
+            expect(scraperResponse(data.response).body).to.be.eql(secureUrlHTML);
           });
       });
     });
@@ -356,7 +356,7 @@ describe('return openGraphScraper', function () {
           expect(result.success).to.be.eql(true);
           expect(result.ogTitle).to.be.eql('test page');
           expect(result.requestUrl).to.be.eql('http://www.test.com');
-          expect(response.body).to.be.eql(basicHTML);
+          expect(scraperResponse(response).body).to.be.eql(basicHTML);
         });
       });
       it('using promises', function () {
@@ -365,7 +365,7 @@ describe('return openGraphScraper', function () {
             expect(data.result.success).to.be.eql(true);
             expect(data.result.ogTitle).to.be.eql('test page');
             expect(data.result.requestUrl).to.be.eql('http://www.test.com');
-            expect(data.response.body).to.be.eql(basicHTML);
+            expect(scraperResponse(data.response).body).to.be.eql(basicHTML);
           });
       });
     });
@@ -388,7 +388,7 @@ describe('return openGraphScraper', function () {
           expect(result.fooTag).to.be.eql('bar');
           expect(result.ogTitle).to.be.eql('test page');
           expect(result.requestUrl).to.be.eql('http://www.test.com');
-          expect(response.body).to.be.eql(basicHTML);
+          expect(scraperResponse(response).body).to.be.eql(basicHTML);
         });
       });
       it('using promises', function () {
@@ -405,7 +405,7 @@ describe('return openGraphScraper', function () {
             expect(data.result.fooTag).to.be.eql('bar');
             expect(data.result.ogTitle).to.be.eql('test page');
             expect(data.result.requestUrl).to.be.eql('http://www.test.com');
-            expect(data.response.body).to.be.eql(basicHTML);
+            expect(scraperResponse(data.response).body).to.be.eql(basicHTML);
           });
       });
     });
@@ -423,7 +423,7 @@ describe('return openGraphScraper', function () {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
           expect(result.error).to.eql('Page not found');
-          expect(result.errorDetails.toString()).to.eql('Error: Page not found');
+          expect(scraperError(result).toString()).to.eql('Error: Page not found');
           expect(response).to.be.eql(undefined);
         });
       });
@@ -435,7 +435,7 @@ describe('return openGraphScraper', function () {
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
             expect(data.result.error).to.eql('Page not found');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Page not found');
+            expect(scraperError(data.result).toString()).to.eql('Error: Page not found');
             expect(data.result.success).to.eql(false);
             expect(data.response).to.be.eql(undefined);
           });
@@ -453,7 +453,7 @@ describe('return openGraphScraper', function () {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
           expect(result.error).to.eql('Page not found');
-          expect(result.errorDetails.toString()).to.eql('Error: Page not found');
+          expect(scraperError(result).toString()).to.eql('Error: Page not found');
           expect(response).to.be.eql(undefined);
         });
       });
@@ -465,7 +465,7 @@ describe('return openGraphScraper', function () {
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
             expect(data.result.error).to.eql('Page not found');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Page not found');
+            expect(scraperError(data.result).toString()).to.eql('Error: Page not found');
             expect(data.result.success).to.eql(false);
             expect(data.response).to.be.eql(undefined);
           });
@@ -483,7 +483,7 @@ describe('return openGraphScraper', function () {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
           expect(result.error).to.eql('Page not found');
-          expect(result.errorDetails.toString()).to.eql('Error: Page not found');
+          expect(scraperError(result).toString()).to.eql('Error: Page not found');
           expect(response).to.be.eql(undefined);
         });
       });
@@ -495,7 +495,7 @@ describe('return openGraphScraper', function () {
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
             expect(data.result.error).to.eql('Page not found');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Page not found');
+            expect(scraperError(data.result).toString()).to.eql('Error: Page not found');
             expect(data.result.success).to.eql(false);
             expect(data.response).to.be.eql(undefined);
           });
@@ -513,7 +513,7 @@ describe('return openGraphScraper', function () {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
           expect(result.error).to.eql('Page not found');
-          expect(result.errorDetails.toString()).to.eql('Error: Page not found');
+          expect(scraperError(result).toString()).to.eql('Error: Page not found');
           expect(response).to.be.eql(undefined);
         });
       });
@@ -525,7 +525,7 @@ describe('return openGraphScraper', function () {
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
             expect(data.result.error).to.eql('Page not found');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Page not found');
+            expect(scraperError(data.result).toString()).to.eql('Error: Page not found');
             expect(data.result.success).to.eql(false);
             expect(data.response).to.be.eql(undefined);
           });
@@ -543,7 +543,7 @@ describe('return openGraphScraper', function () {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
           expect(result.error).to.eql('Page not found');
-          expect(result.errorDetails.toString()).to.eql('Error: Page not found');
+          expect(scraperError(result).toString()).to.eql('Error: Page not found');
           expect(response).to.be.eql(undefined);
         });
       });
@@ -555,7 +555,7 @@ describe('return openGraphScraper', function () {
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
             expect(data.result.error).to.eql('Page not found');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Page not found');
+            expect(scraperError(data.result).toString()).to.eql('Error: Page not found');
             expect(data.result.success).to.eql(false);
             expect(data.response).to.be.eql(undefined);
           });
@@ -573,7 +573,7 @@ describe('return openGraphScraper', function () {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
           expect(result.error).to.eql('Time out');
-          expect(result.errorDetails.toString()).to.eql('Error: Time out');
+          expect(scraperError(result).toString()).to.eql('Error: Time out');
           expect(response).to.be.eql(undefined);
         });
       });
@@ -585,7 +585,7 @@ describe('return openGraphScraper', function () {
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
             expect(data.result.error).to.eql('Time out');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Time out');
+            expect(scraperError(data.result).toString()).to.eql('Error: Time out');
             expect(data.result.success).to.eql(false);
             expect(data.response).to.be.eql(undefined);
           });
@@ -602,7 +602,7 @@ describe('return openGraphScraper', function () {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
           expect(result.error).to.eql('Page not found');
-          expect(result.errorDetails.toString()).to.eql('Error: Page not found');
+          expect(scraperError(result).toString()).to.eql('Error: Page not found');
           expect(response).to.be.eql(undefined);
         });
       });
@@ -614,7 +614,7 @@ describe('return openGraphScraper', function () {
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
             expect(data.result.error).to.eql('Page not found');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Page not found');
+            expect(scraperError(data.result).toString()).to.eql('Error: Page not found');
             expect(data.result.success).to.eql(false);
             expect(data.response).to.be.eql(undefined);
           });
@@ -631,7 +631,7 @@ describe('return openGraphScraper', function () {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
           expect(result.error).to.eql('Web server is returning error');
-          expect(result.errorDetails.toString()).to.eql('Error: Web server is returning error');
+          expect(scraperError(result).toString()).to.eql('Error: Web server is returning error');
           expect(response).to.be.eql(undefined);
         });
       });
@@ -643,7 +643,7 @@ describe('return openGraphScraper', function () {
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
             expect(data.result.error).to.eql('Web server is returning error');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Web server is returning error');
+            expect(scraperError(data.result).toString()).to.eql('Error: Web server is returning error');
             expect(data.result.success).to.eql(false);
             expect(data.response).to.be.eql(undefined);
           });
@@ -659,7 +659,7 @@ describe('return openGraphScraper', function () {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
           expect(result.error).to.eql('Page not found');
-          expect(result.errorDetails.toString()).to.eql('Error: Page not found');
+          expect(scraperError(result).toString()).to.eql('Error: Page not found');
           expect(result.requestUrl).to.be.eql('http://www.test.com');
           expect(response).to.be.eql(undefined);
         });
@@ -672,7 +672,7 @@ describe('return openGraphScraper', function () {
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
             expect(data.result.error).to.eql('Page not found');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Page not found');
+            expect(scraperError(data.result).toString()).to.eql('Error: Page not found');
             expect(data.result.requestUrl).to.eql('http://www.test.com');
             expect(data.result.success).to.eql(false);
             expect(data.response).to.be.eql(undefined);
@@ -689,7 +689,7 @@ describe('return openGraphScraper', function () {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
           expect(result.error).to.eql('Web server is returning error');
-          expect(result.errorDetails.toString()).to.eql('Error: Web server is returning error');
+          expect(scraperError(result).toString()).to.eql('Error: Web server is returning error');
           expect(result.requestUrl).to.be.eql('http://www.test.com');
           expect(response).to.be.eql(undefined);
         });
@@ -702,7 +702,7 @@ describe('return openGraphScraper', function () {
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
             expect(data.result.error).to.eql('Web server is returning error');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Web server is returning error');
+            expect(scraperError(data.result).toString()).to.eql('Error: Web server is returning error');
             expect(data.result.requestUrl).to.eql('http://www.test.com');
             expect(data.result.success).to.eql(false);
             expect(data.response).to.be.eql(undefined);
@@ -716,7 +716,7 @@ describe('return openGraphScraper', function () {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
           expect(result.error).to.eql('Must scrape an HTML page');
-          expect(result.errorDetails.toString()).to.eql('Error: Must scrape an HTML page');
+          expect(scraperError(result).toString()).to.eql('Error: Must scrape an HTML page');
           expect(result.requestUrl).to.be.eql('http://www.test.com/test.png');
           expect(response).to.be.eql(undefined);
         });
@@ -730,7 +730,7 @@ describe('return openGraphScraper', function () {
             expect(data.error).to.be.eql(true);
             expect(data.result.success).to.be.eql(false);
             expect(data.result.error).to.eql('Must scrape an HTML page');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Must scrape an HTML page');
+            expect(scraperError(data.result).toString()).to.eql('Error: Must scrape an HTML page');
             expect(data.result.requestUrl).to.be.eql('http://www.test.com/test.png');
             expect(data.response).to.be.eql(undefined);
           });
@@ -743,7 +743,7 @@ describe('return openGraphScraper', function () {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
           expect(result.error).to.eql('Must scrape an HTML page');
-          expect(result.errorDetails.toString()).to.eql('Error: Must scrape an HTML page');
+          expect(scraperError(result).toString()).to.eql('Error: Must scrape an HTML page');
           expect(result.requestUrl).to.be.eql('http://www.test.com/test.pdf?123');
           expect(response).to.be.eql(undefined);
         });
@@ -757,7 +757,7 @@ describe('return openGraphScraper', function () {
             expect(data.error).to.be.eql(true);
             expect(data.result.success).to.be.eql(false);
             expect(data.result.error).to.eql('Must scrape an HTML page');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Must scrape an HTML page');
+            expect(scraperError(data.result).toString()).to.eql('Error: Must scrape an HTML page');
             expect(data.result.requestUrl).to.be.eql('http://www.test.com/test.pdf?123');
             expect(data.response).to.be.eql(undefined);
           });
@@ -770,7 +770,7 @@ describe('return openGraphScraper', function () {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
           expect(result.error).to.eql('Host name has been black listed');
-          expect(result.errorDetails.toString()).to.eql('Error: Host name has been black listed');
+          expect(scraperError(result).toString()).to.eql('Error: Host name has been black listed');
           expect(result.requestUrl).to.be.eql('http://www.test.com/test');
           expect(response).to.be.eql(undefined);
         });
@@ -784,7 +784,7 @@ describe('return openGraphScraper', function () {
             expect(data.error).to.be.eql(true);
             expect(data.result.success).to.be.eql(false);
             expect(data.result.error).to.eql('Host name has been black listed');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Host name has been black listed');
+            expect(scraperError(data.result).toString()).to.eql('Error: Host name has been black listed');
             expect(data.result.requestUrl).to.be.eql('http://www.test.com/test');
             expect(data.response).to.be.eql(undefined);
           });
@@ -797,7 +797,7 @@ describe('return openGraphScraper', function () {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
           expect(result.error).to.eql('Invalid URL');
-          expect(result.errorDetails.toString()).to.eql('Error: Invalid URL');
+          expect(scraperError(result).toString()).to.eql('Error: Invalid URL');
           expect(result.requestUrl).to.be.eql('');
           expect(response).to.be.eql(undefined);
         });
@@ -811,7 +811,7 @@ describe('return openGraphScraper', function () {
             expect(data.error).to.be.eql(true);
             expect(data.result.success).to.be.eql(false);
             expect(data.result.error).to.eql('Invalid URL');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Invalid URL');
+            expect(scraperError(data.result).toString()).to.eql('Error: Invalid URL');
             expect(data.result.requestUrl).to.be.eql('');
             expect(data.response).to.be.eql(undefined);
           });
@@ -824,7 +824,7 @@ describe('return openGraphScraper', function () {
           expect(error).to.be.eql(true);
           expect(result.success).to.be.eql(false);
           expect(result.error).to.eql('Must specify either `url` or `html`, not both');
-          expect(result.errorDetails.toString()).to.eql('Error: Must specify either `url` or `html`, not both');
+          expect(scraperError(result).toString()).to.eql('Error: Must specify either `url` or `html`, not both');
           expect(result.requestUrl).to.be.eql('www.test.com');
           expect(response).to.be.eql(undefined);
         });
@@ -837,7 +837,7 @@ describe('return openGraphScraper', function () {
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
             expect(data.result.error).to.eql('Must specify either `url` or `html`, not both');
-            expect(data.result.errorDetails.toString()).to.eql('Error: Must specify either `url` or `html`, not both');
+            expect(scraperError(data.result).toString()).to.eql('Error: Must specify either `url` or `html`, not both');
             expect(data.result.requestUrl).to.eql('www.test.com');
             expect(data.result.success).to.eql(false);
             expect(data.response).to.be.eql(undefined);

@@ -3,7 +3,7 @@ const buildErrorResult = (options, exception) => ({
   success: false,
   requestUrl: options.url,
   error: exception instanceof Error ? exception.message : String(exception),
-  errorDetails: exception
+  errorDetails: exception instanceof Error ? exception : new Error(String(exception))
 });
 async function run(options, callback) {
   const hasCallback = typeof callback === "function";

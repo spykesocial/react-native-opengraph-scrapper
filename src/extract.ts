@@ -28,9 +28,9 @@ export const extractMetaTags = (body: string, options: OpenGraphScraperOptions) 
   });
 
   if (!ogObject.ogImage && ogObject.ogImageSecureURL) {
-    ogObject.ogImage = ogObject.ogImageSecureURL as string | string[];
+    (ogObject as Record<string, unknown>).ogImage = ogObject.ogImageSecureURL;
   } else if (!ogObject.ogImage && ogObject.ogImageURL) {
-    ogObject.ogImage = ogObject.ogImageURL as string | string[];
+    (ogObject as Record<string, unknown>).ogImage = ogObject.ogImageURL;
   }
 
   ogObject = mediaSetup(ogObject, options);

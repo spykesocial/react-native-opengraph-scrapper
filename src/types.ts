@@ -4,10 +4,23 @@ export interface MetaTagDefinition {
   fieldName: string;
 }
 
+export interface MediaResult {
+  url?: string | null;
+  width?: string | null;
+  height?: string | null;
+  type?: string | null;
+  alt?: string | null;
+  stream?: string | null;
+  track?: string | null;
+  disc?: string | null;
+}
+
+export type MediaValue = MediaResult | MediaResult[];
+
 export interface OpenGraphScraperOptions {
-  url?: string;
+  url?: string | number;
   html?: string;
-  timeout?: number;
+  timeout?: number | string;
   blacklist?: string[];
   onlyGetOpenGraphInfo?: boolean;
   ogImageFallback?: boolean;
@@ -20,22 +33,11 @@ export interface OpenGraphScraperOptions {
   encoding?: string | null;
 }
 
-export interface MediaResult {
-  url?: string | null;
-  width?: string | null;
-  height?: string | null;
-  type?: string | null;
-  alt?: string | null;
-  stream?: string | null;
-  track?: string | null;
-  disc?: string | null;
-}
-
-export type OpenGraphResult = Record<string, unknown> & {
-  requestUrl?: string | null;
+export interface OpenGraphResult {
+  requestUrl?: string | number | null;
   success?: boolean;
   error?: string;
-  errorDetails?: Error | unknown;
+  errorDetails?: Error;
   ogTitle?: string;
   ogDescription?: string;
   ogLocale?: string;
@@ -46,15 +48,18 @@ export type OpenGraphResult = Record<string, unknown> & {
   ogAudioSecureURL?: string;
   ogAudioType?: string;
   charset?: string | null;
-  ogImage?: unknown;
-  ogVideo?: unknown;
-  twitterImage?: unknown;
-  twitterPlayer?: unknown;
-  musicSong?: unknown;
-};
+  ogImage?: MediaValue;
+  ogVideo?: MediaValue;
+  twitterImage?: MediaValue;
+  twitterPlayer?: MediaValue;
+  musicSong?: MediaValue;
+  [key: string]: unknown;
+}
 
 export type ScraperResponse = Response | {
   body: string;
+  ok?: boolean;
+  status?: number;
   text?: () => Promise<string>;
 };
 
@@ -77,8 +82,8 @@ export interface PromiseScraperError {
 
 export type PromiseScraperResult = PromiseScraperSuccess;
 
-export type OpenGraphScraperCallback = (
-  error: boolean,
-  result: OpenGraphResult,
-  response?: ScraperResponse,
-) => void;
+export interface OpenGraphScraperCallback {
+  (error: false, result: OpenGraphResult, response: ScraperResponse): void;
+  (error: true, result: OpenGraphResult, response?: undefined): void;
+  (error: boolean, result: OpenGraphResult, response?: ScraperResponse): void;
+}
