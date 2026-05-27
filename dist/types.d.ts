@@ -1,10 +1,20 @@
-interface MetaTagDefinition {
+export interface MetaTagDefinition {
     multiple: boolean;
     property: string;
     fieldName: string;
 }
-type MediaValue = MediaResult | MediaResult[];
-interface OpenGraphScraperOptions {
+export interface MediaResult {
+    url?: string | null;
+    width?: string | null;
+    height?: string | null;
+    type?: string | null;
+    alt?: string | null;
+    stream?: string | null;
+    track?: string | null;
+    disc?: string | null;
+}
+export type MediaValue = MediaResult | MediaResult[];
+export interface OpenGraphScraperOptions {
     url?: string | number;
     html?: string;
     timeout?: number | string;
@@ -19,17 +29,7 @@ interface OpenGraphScraperOptions {
     urlValidatorSettings?: Record<string, unknown>;
     encoding?: string | null;
 }
-interface MediaResult {
-    url?: string | null;
-    width?: string | null;
-    height?: string | null;
-    type?: string | null;
-    alt?: string | null;
-    stream?: string | null;
-    track?: string | null;
-    disc?: string | null;
-}
-interface OpenGraphResult {
+export interface OpenGraphResult {
     requestUrl?: string | number | null;
     success?: boolean;
     error?: string;
@@ -51,26 +51,30 @@ interface OpenGraphResult {
     musicSong?: MediaValue;
     [key: string]: unknown;
 }
-type ScraperResponse = Response | {
+export type ScraperResponse = Response | {
     body: string;
     ok?: boolean;
     status?: number;
     text?: () => Promise<string>;
 };
-interface InternalScraperResult {
+export interface InternalScraperResult {
     ogObject: OpenGraphResult;
     response: ScraperResponse;
 }
-interface PromiseScraperSuccess {
+export interface PromiseScraperSuccess {
     error: false;
     result: OpenGraphResult;
     response: ScraperResponse;
 }
-type PromiseScraperResult = PromiseScraperSuccess;
-interface OpenGraphScraperCallback {
+export interface PromiseScraperError {
+    error: true;
+    result: OpenGraphResult;
+    response?: undefined;
+}
+export type PromiseScraperResult = PromiseScraperSuccess;
+export interface OpenGraphScraperCallback {
     (error: false, result: OpenGraphResult, response: ScraperResponse): void;
     (error: true, result: OpenGraphResult, response?: undefined): void;
     (error: boolean, result: OpenGraphResult, response?: ScraperResponse): void;
 }
-
-export type { InternalScraperResult as I, MediaResult as M, OpenGraphResult as O, PromiseScraperResult as P, ScraperResponse as S, MediaValue as a, MetaTagDefinition as b, OpenGraphScraperCallback as c, OpenGraphScraperOptions as d, PromiseScraperSuccess as e };
+//# sourceMappingURL=types.d.ts.map

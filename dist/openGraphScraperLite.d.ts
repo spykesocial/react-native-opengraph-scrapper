@@ -1,5 +1,4 @@
-import { d as OpenGraphScraperOptions, I as InternalScraperResult } from './types-CoN5ZJ1u.js';
-
+import type { InternalScraperResult, OpenGraphScraperOptions } from './types.js';
 declare const setOptionsAndReturnOpenGraphResults: (options: OpenGraphScraperOptions) => Promise<InternalScraperResult>;
-
-export { setOptionsAndReturnOpenGraphResults as default };
+export default setOptionsAndReturnOpenGraphResults;
+//# sourceMappingURL=openGraphScraperLite.d.ts.map

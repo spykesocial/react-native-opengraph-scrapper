@@ -1,5 +1,4 @@
-import { b as MetaTagDefinition } from './types-CoN5ZJ1u.js';
-
+import type { MetaTagDefinition } from './types.js';
 declare const fields: MetaTagDefinition[];
-
-export { fields as default };
+export default fields;
+//# sourceMappingURL=fields.d.ts.map

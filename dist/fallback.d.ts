@@ -1,6 +1,5 @@
-import { CheerioAPI } from 'cheerio';
-import { O as OpenGraphResult, d as OpenGraphScraperOptions } from './types-CoN5ZJ1u.js';
-
+import type { CheerioAPI } from 'cheerio';
+import type { OpenGraphResult, OpenGraphScraperOptions } from './types.js';
 declare const fallback: (ogObject: OpenGraphResult, options: OpenGraphScraperOptions, $: CheerioAPI) => OpenGraphResult;
-
-export { fallback as default };
+export default fallback;
+//# sourceMappingURL=fallback.d.ts.map

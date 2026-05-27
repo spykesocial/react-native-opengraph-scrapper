@@ -1,10 +1,8 @@
-import { d as OpenGraphScraperOptions, I as InternalScraperResult } from './types-CoN5ZJ1u.js';
-
-declare const requestAndResultsFormatter: (options: OpenGraphScraperOptions & {
+import type { InternalScraperResult, OpenGraphScraperOptions } from './types.js';
+export declare const requestAndResultsFormatter: (options: OpenGraphScraperOptions & {
     url: string;
     timeout: number;
     headers: Record<string, string>;
     peekSize: number;
 }) => Promise<InternalScraperResult>;
-
-export { requestAndResultsFormatter };
+//# sourceMappingURL=request.d.ts.map

@@ -1,0 +1,39 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+      - run: npm pack
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          ASSET="spykesocial-react-native-opengraph-scrapper-${VERSION}.tgz"
+          NOTES="$(awk "/^## ${VERSION}$/{flag=1; next} /^## /{flag=0} flag" CHANGELOG.md)"
+          if [ -z "${NOTES}" ]; then
+            NOTES="Install with \`npm install @spykesocial/react-native-opengraph-scrapper@${VERSION}\`"
+          fi
+          gh release create "${GITHUB_REF_NAME}" \
+            --title "@spykesocial/react-native-opengraph-scrapper ${VERSION}" \
+            --notes "${NOTES}" \
+            "${ASSET}"

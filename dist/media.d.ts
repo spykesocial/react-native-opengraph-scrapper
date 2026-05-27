@@ -1,5 +1,3 @@
-import { O as OpenGraphResult, d as OpenGraphScraperOptions } from './types-CoN5ZJ1u.js';
-
-declare const mediaSetup: (ogObject: OpenGraphResult, options: OpenGraphScraperOptions) => OpenGraphResult;
-
-export { mediaSetup };
+import type { OpenGraphResult, OpenGraphScraperOptions } from './types.js';
+export declare const mediaSetup: (ogObject: OpenGraphResult, options: OpenGraphScraperOptions) => OpenGraphResult;
+//# sourceMappingURL=media.d.ts.map

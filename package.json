@@ -17,7 +17,7 @@
     }
   },
   "scripts": {
-    "build": "tsup && tsx scripts/write-cjs-wrapper.ts",
+    "build": "tsup && tsc -p tsconfig.build.json && tsx scripts/write-cjs-wrapper.ts",
     "eslint:fix": "eslint \"src/**/*.ts\" \"tests/**/*.ts\" \"scripts/**/*.ts\" --fix",
     "eslint": "eslint \"src/**/*.ts\" \"tests/**/*.ts\" \"scripts/**/*.ts\"",
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tests.json",
