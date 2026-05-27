@@ -35,7 +35,17 @@ export type OpenGraphResult = Record<string, unknown> & {
   requestUrl?: string | null;
   success?: boolean;
   error?: string;
-  errorDetails?: unknown;
+  errorDetails?: Error | unknown;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogLocale?: string;
+  ogUrl?: string;
+  ogDate?: string;
+  ogLogo?: string;
+  ogAudioURL?: string;
+  ogAudioSecureURL?: string;
+  ogAudioType?: string;
+  charset?: string | null;
   ogImage?: unknown;
   ogVideo?: unknown;
   twitterImage?: unknown;

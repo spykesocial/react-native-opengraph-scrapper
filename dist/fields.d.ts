@@ -1,4 +1,4 @@
-import { a as MetaTagDefinition } from './types-Cq5gc-92.js';
+import { a as MetaTagDefinition } from './types-B2RmHjS0.js';
 
 declare const fields: MetaTagDefinition[];
 

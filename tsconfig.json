@@ -12,7 +12,8 @@
     "ignoreDeprecations": "6.0",
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "types": ["mocha", "chai"]
   },
   "include": ["src/**/*.ts"]
 }

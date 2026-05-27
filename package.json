@@ -17,12 +17,13 @@
     }
   },
   "scripts": {
-    "build": "tsup && node scripts/write-cjs-wrapper.cjs",
-    "eslint:fix": "eslint \"src/**/*.ts\" \"tests/**/*.js\" --fix",
-    "eslint": "eslint \"src/**/*.ts\" \"tests/**/*.js\"",
-    "mocha:unit": "npm run build && c8 --reporter=html --reporter=text mocha --require ./tests/helpers/bootstrap.js --recursive \"./tests/unit/**/*.spec.js\"",
-    "mocha:int": "npm run build && mocha --require ./tests/helpers/bootstrap.js --recursive \"./tests/integration/**/*.spec.js\" --timeout 10000",
-    "mocha:rn": "npm run build && mocha --require ./tests/helpers/bootstrap.js --recursive \"./tests/react-native/**/*.spec.js\" --timeout 15000",
+    "build": "tsup && tsx scripts/write-cjs-wrapper.ts",
+    "eslint:fix": "eslint \"src/**/*.ts\" \"tests/**/*.ts\" \"scripts/**/*.ts\" --fix",
+    "eslint": "eslint \"src/**/*.ts\" \"tests/**/*.ts\" \"scripts/**/*.ts\"",
+    "typecheck": "tsc --noEmit",
+    "mocha:unit": "npm run build && c8 --reporter=html --reporter=text mocha --import=tsx --require ./tests/helpers/bootstrap.ts --recursive \"./tests/unit/**/*.spec.ts\"",
+    "mocha:int": "npm run build && mocha --import=tsx --require ./tests/helpers/bootstrap.ts --recursive \"./tests/integration/**/*.spec.ts\" --timeout 10000",
+    "mocha:rn": "npm run build && mocha --import=tsx --require ./tests/helpers/bootstrap.ts --recursive \"./tests/react-native/**/*.spec.ts\" --timeout 15000",
     "test": "npm run mocha:unit && npm run mocha:int && npm run mocha:rn"
   },
   "engines": {
@@ -46,6 +47,9 @@
     "dist"
   ],
   "devDependencies": {
+    "@types/chai": "^4.3.20",
+    "@types/mocha": "^10.0.10",
+    "@types/sinon": "^17.0.4",
     "@types/validator": "^13.15.10",
     "@typescript-eslint/eslint-plugin": "^8.60.0",
     "@typescript-eslint/parser": "^8.60.0",
@@ -61,6 +65,7 @@
     "react-native": "0.85.3",
     "sinon": "^19.0.2",
     "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
     "typescript": "^6.0.3",
     "whatwg-fetch": "^3.6.20"
   },

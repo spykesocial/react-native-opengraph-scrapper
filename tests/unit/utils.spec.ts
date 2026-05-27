@@ -1,7 +1,12 @@
 /* eslint-disable mocha/no-setup-in-describe */
 import * as utils from '../../dist/utils.js';
 
-const validateUrl = (urls, valid, message, urlValidatorSettings) => {
+const validateUrl = (
+  urls: string[],
+  valid: boolean,
+  message: string,
+  urlValidatorSettings?: Record<string, unknown>,
+) => {
   for (let index = 0; index < urls.length; index += 1) {
     // eslint-disable-next-line no-loop-func
     it(`${urls[index]} ${message}`, function () {
@@ -170,7 +175,7 @@ describe('utils', function () {
         expect(validate.timeout).to.eql(2000);
       });
       it('timeout is missing', function () {
-        const validate = utils.validate('foobar.com');
+        const validate = utils.validate('foobar.com', undefined);
         expect(validate.timeout).to.eql(2000);
       });
     });

@@ -1,5 +1,5 @@
 import { CheerioAPI } from 'cheerio';
-import { O as OpenGraphResult, c as OpenGraphScraperOptions } from './types-Cq5gc-92.js';
+import { O as OpenGraphResult, c as OpenGraphScraperOptions } from './types-B2RmHjS0.js';
 
 declare const fallback: (ogObject: OpenGraphResult, options: OpenGraphScraperOptions, $: CheerioAPI) => OpenGraphResult;
 

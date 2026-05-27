@@ -1,4 +1,4 @@
-import { c as OpenGraphScraperOptions, O as OpenGraphResult } from './types-Cq5gc-92.cjs';
+import { c as OpenGraphScraperOptions, O as OpenGraphResult } from './types-B2RmHjS0.cjs';
 
 declare const extractMetaTags: (body: string, options: OpenGraphScraperOptions) => OpenGraphResult;
 

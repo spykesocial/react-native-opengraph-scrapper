@@ -26,6 +26,8 @@ jobs:
       run: npm ci
     - name: Linting
       run: npm run eslint
+    - name: Typecheck
+      run: npm run typecheck
     - name: Unit Testing
       run: npm run mocha:unit
     - name: Integration Testing

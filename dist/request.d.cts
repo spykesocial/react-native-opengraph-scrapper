@@ -1,4 +1,4 @@
-import { c as OpenGraphScraperOptions, I as InternalScraperResult } from './types-Cq5gc-92.cjs';
+import { c as OpenGraphScraperOptions, I as InternalScraperResult } from './types-B2RmHjS0.cjs';
 
 declare const requestAndResultsFormatter: (options: OpenGraphScraperOptions & {
     url: string;

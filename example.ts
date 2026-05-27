@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import getOpenGraphData from '@spykesocial/react-native-opengraph-scrapper';
 
 const options = {

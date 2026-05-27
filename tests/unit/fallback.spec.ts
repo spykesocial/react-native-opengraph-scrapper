@@ -1,18 +1,19 @@
 import * as cheerio from 'cheerio';
 
 import fallback from '../../dist/fallback.js';
+import type { OpenGraphResult, MediaResult } from '../../src/types.js';
 
 describe('fallback', function () {
   context('ogTitle', function () {
     it('when there is a og title already found', function () {
-      let ogObject = { ogTitle: 'bar' };
+      let ogObject: OpenGraphResult = { ogTitle: 'bar' };
       const $ = cheerio.load('<html><body><title>foo</title></body></html>');
       ogObject = fallback(ogObject, {}, $);
       expect(ogObject.ogTitle).to.be.eql('bar');
       expect(ogObject).to.have.all.keys('ogTitle');
     });
     it('when there is a title tag', function () {
-      let ogObject = {};
+      let ogObject: OpenGraphResult = {};
       const $ = cheerio.load('<html><body><title>foo</title></body></html>');
       ogObject = fallback(ogObject, {}, $);
       expect(ogObject.ogTitle).to.be.eql('foo');
@@ -57,7 +58,7 @@ describe('fallback', function () {
 
   context('ogDescription', function () {
     it('when there is a og description already found', function () {
-      let ogObject = { ogDescription: 'bar' };
+      let ogObject: OpenGraphResult = { ogDescription: 'bar' };
       const $ = cheerio.load('<html><head><meta name="description" content="foo"></head></html>');
       ogObject = fallback(ogObject, {}, $);
       expect(ogObject.ogDescription).to.be.eql('bar');
@@ -90,11 +91,11 @@ describe('fallback', function () {
 
   context('ogImage', function () {
     it('when there is a og image already found', function () {
-      let ogObject = { ogImage: { url: 'bar.png', type: 'png' } };
+      let ogObject: OpenGraphResult = { ogImage: { url: 'bar.png', type: 'png' } };
       const $ = cheerio.load('<html><body><image src="foo.png"></body></html>');
       ogObject = fallback(ogObject, { ogImageFallback: true }, $);
-      expect(ogObject.ogImage.url).to.be.eql('bar.png');
-      expect(ogObject.ogImage.type).to.be.eql('png');
+      expect((ogObject.ogImage as MediaResult).url).to.be.eql('bar.png');
+      expect((ogObject.ogImage as MediaResult).type).to.be.eql('png');
       expect(ogObject).to.have.all.keys('ogImage');
     });
     it('when there is no og images found and ogImageFallback is set to false', function () {
@@ -118,33 +119,33 @@ describe('fallback', function () {
       expect(ogObject).to.be.eql({});
     });
     it('when there is a og image already found but it has no type', function () {
-      let ogObject = { ogImage: { url: 'bar.png' } };
+      let ogObject: OpenGraphResult = { ogImage: { url: 'bar.png' } };
       const $ = cheerio.load('<html><body><image src="foo.png"></body></html>');
       ogObject = fallback(ogObject, { ogImageFallback: true }, $);
-      expect(ogObject.ogImage.url).to.be.eql('bar.png');
-      expect(ogObject.ogImage.type).to.be.eql('png');
+      expect((ogObject.ogImage as MediaResult).url).to.be.eql('bar.png');
+      expect((ogObject.ogImage as MediaResult).type).to.be.eql('png');
       expect(ogObject).to.have.all.keys('ogImage');
     });
     it('when there is a og image already found but it has no type but that type is invalid', function () {
-      let ogObject = { ogImage: { url: 'bar.foo' } };
+      let ogObject: OpenGraphResult = { ogImage: { url: 'bar.foo' } };
       const $ = cheerio.load('<html><body><image src="foo.png"></body></html>');
       ogObject = fallback(ogObject, { ogImageFallback: true }, $);
-      expect(ogObject.ogImage.url).to.be.eql('bar.foo');
-      expect(ogObject.ogImage.type).to.be.eql(undefined);
+      expect((ogObject.ogImage as MediaResult).url).to.be.eql('bar.foo');
+      expect((ogObject.ogImage as MediaResult).type).to.be.eql(undefined);
       expect(ogObject).to.have.all.keys('ogImage');
     });
   });
 
   context('ogAudioURL/ogAudioSecureURL', function () {
     it('when there is a og AudioURL already found', function () {
-      let ogObject = { ogAudioURL: 'bar.mp3' };
+      let ogObject: OpenGraphResult = { ogAudioURL: 'bar.mp3' };
       const $ = cheerio.load('<html><body><audio src="foo.png"></body></html>');
       ogObject = fallback(ogObject, { }, $);
       expect(ogObject.ogAudioURL).to.be.eql('bar.mp3');
       expect(ogObject).to.have.all.keys('ogAudioURL');
     });
     it('when there is a og AudioSecureURL already found', function () {
-      let ogObject = { ogAudioSecureURL: 'bar.mp3' };
+      let ogObject: OpenGraphResult = { ogAudioSecureURL: 'bar.mp3' };
       const $ = cheerio.load('<html><body><audio src="foo.png"></body></html>');
       ogObject = fallback(ogObject, { }, $);
       expect(ogObject.ogAudioSecureURL).to.be.eql('bar.mp3');
@@ -185,7 +186,7 @@ describe('fallback', function () {
 
   context('ogLocale', function () {
     it('when there is a og locale already found', function () {
-      let ogObject = { ogLocale: 'bar' };
+      let ogObject: OpenGraphResult = { ogLocale: 'bar' };
       const $ = cheerio.load('<html lang="foo"></html>');
       ogObject = fallback(ogObject, {}, $);
       expect(ogObject.ogLocale).to.be.eql('bar');
@@ -212,7 +213,7 @@ describe('fallback', function () {
 
   context('ogLogo', function () {
     it('when there is a og logo already found', function () {
-      let ogObject = { ogLogo: 'bar' };
+      let ogObject: OpenGraphResult = { ogLogo: 'bar' };
       const $ = cheerio.load('<html><head><meta itemprop="logo" content="foo"></head></html>');
       ogObject = fallback(ogObject, {}, $);
       expect(ogObject.ogLogo).to.be.eql('bar');
@@ -239,7 +240,7 @@ describe('fallback', function () {
 
   context('ogUrl', function () {
     it('when there is a og url already found', function () {
-      let ogObject = { ogUrl: 'bar' };
+      let ogObject: OpenGraphResult = { ogUrl: 'bar' };
       const $ = cheerio.load('<html><head><link rel="canonical" href="foo"></head></html>');
       ogObject = fallback(ogObject, {}, $);
       expect(ogObject.ogUrl).to.be.eql('bar');
@@ -266,7 +267,7 @@ describe('fallback', function () {
 
   context('ogDate', function () {
     it('when there is a og date already found', function () {
-      let ogObject = { ogDate: 'bar' };
+      let ogObject: OpenGraphResult = { ogDate: 'bar' };
       const $ = cheerio.load('<html><head><meta name="date" content="foo"></head></html>');
       ogObject = fallback(ogObject, {}, $);
       expect(ogObject.ogDate).to.be.eql('bar');
