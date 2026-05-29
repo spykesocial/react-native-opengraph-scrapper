@@ -1,16 +1,19 @@
 # React Native OpenGraph Scrapper
 
-A TypeScript-friendly React Native package for scraping Open Graph metadata and Twitter Card information from a URL or HTML string.
+A TypeScript-friendly React Native package for scraping Open Graph metadata and Twitter Card information from a URL or HTML string. Even a Youtube video! As featured on https://spyke.social
 
 ## Installation
 
-```bash
-npm install @spykesocial/react-native-opengraph-scrapper
-```
-or
+
 ```bash
 yarn add @spykesocial/react-native-opengraph-scrapper
 ```
+or
+```bash
+npm install @spykesocial/react-native-opengraph-scrapper
+```
+
+
 
 ## Usage
 
