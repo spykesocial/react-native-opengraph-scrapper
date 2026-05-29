@@ -19,6 +19,7 @@ export default defineConfig({
   splitting: false,
   bundle: false,
   target: 'es2020',
+  tsconfig: 'tsconfig.src.json',
   outDir: 'dist',
   outExtension({ format }) {
     return {
