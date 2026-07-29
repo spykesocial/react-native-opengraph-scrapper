@@ -125,4 +125,5 @@ const setOptionsAndReturnOpenGraphResults = async (
   }
 };
 
+export { setOptionsAndReturnOpenGraphResults };
 export default setOptionsAndReturnOpenGraphResults;

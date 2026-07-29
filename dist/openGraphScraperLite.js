@@ -98,6 +98,7 @@ const setOptionsAndReturnOpenGraphResults = async (options) => {
 };
 var openGraphScraperLite_default = setOptionsAndReturnOpenGraphResults;
 export {
-  openGraphScraperLite_default as default
+  openGraphScraperLite_default as default,
+  setOptionsAndReturnOpenGraphResults
 };
 //# sourceMappingURL=openGraphScraperLite.js.map

@@ -165,7 +165,6 @@ describe('encoding', function () {
     //     console.log('result:', result);
     //     expect(error).to.be.eql(false);
     //     expect(result.ogTitle).to.be.eql('【楽天市場】Shopping is Entertainment! ： インターネット最大級の通信販売、通販オンラインショッピングコミュニティ');
-    // eslint-disable-next-line max-len
     //     expect(result.ogDescription).to.be.eql('楽天市場はインターネット通販が楽しめる総合ショッピングモール。楽天スーパーポイントがどんどん貯まる！使える！毎日お得なクーポンも。あす楽利用で翌日にお届け。食品から家電、ファッション、ベビー用品、コスメまで、充実の品揃え。');
     //     expect(result.ogUrl).to.be.eql('https://web.archive.org/web/20170913045814/https://www.rakuten.co.jp/');
     //     expect(result.ogLocale).to.be.eql('ja');
@@ -173,9 +172,7 @@ describe('encoding', function () {
     //     expect(result.ogSiteName).to.be.eql('楽天市場');
     //     expect(result.twitterCard).to.be.eql('summary');
     //     expect(result.twitterSite).to.be.eql('@RakutenJP');
-    // eslint-disable-next-line max-len
     //     expect(result.twitterTitle).to.be.eql('【楽天市場】Shopping is Entertainment! ： インターネット最大級の通信販売、通販オンラインショッピングコミュニティ');
-    // eslint-disable-next-line max-len
     //     expect(result.twitterDescription).to.be.eql('楽天市場はインターネット通販が楽しめる総合ショッピングモール。楽天スーパーポイントがどんどん貯まる！使える！毎日お得なクーポンも。あす楽利用で翌日にお届け。食品から家電、ファッション、ベビー用品、コスメまで、充実の品揃え。');
     //     expect(result.ogImage).to.be.eql({
     //       url: 'https://web.archive.org/web/20170913045814im_/https://r.r10s.jp/com/img/home/top/ogp.png',
@@ -226,7 +223,6 @@ describe('encoding', function () {
     //       expect(result.success).to.be.eql(false);
     //       expect(result.requestUrl).to.be.eql('http://www.tnnbar.org.tw/');
     //       expect(result.error).to.eql("Encoding not recognized: 'zh_tw' (searched as: 'zhtw')");
-    // eslint-disable-next-line max-len
     //       expect(result.errorDetails.toString()).to.eql("Error: Encoding not recognized: 'zh_tw' (searched as: 'zhtw')");
     //       expect(result).to.have.all.keys(
     //         'error',

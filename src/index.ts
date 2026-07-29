@@ -1,4 +1,4 @@
-import openGraphScraperLite from './openGraphScraperLite.js';
+import { setOptionsAndReturnOpenGraphResults as openGraphScraperLite } from './openGraphScraperLite.js';
 import type {
   OpenGraphResult,
   OpenGraphScraperCallback,

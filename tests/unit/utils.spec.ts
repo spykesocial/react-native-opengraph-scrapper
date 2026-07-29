@@ -1,4 +1,3 @@
-/* eslint-disable mocha/no-setup-in-describe */
 import * as utils from '../../dist/utils.js';
 
 const validateUrl = (
@@ -8,7 +7,6 @@ const validateUrl = (
   urlValidatorSettings?: Record<string, unknown>,
 ) => {
   for (let index = 0; index < urls.length; index += 1) {
-    // eslint-disable-next-line no-loop-func
     it(`${urls[index]} ${message}`, function () {
       const validate = utils.validate(urls[index], 2000, urlValidatorSettings);
       if (valid) {

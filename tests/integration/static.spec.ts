@@ -1,7 +1,5 @@
-import chai from 'chai';
+import { expect } from 'chai';
 import ogs from '@spykesocial/react-native-opengraph-scrapper';
-
-const { expect } = chai;
 
 describe('static', function () {
   it('airbnb', function () {

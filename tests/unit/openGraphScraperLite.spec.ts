@@ -430,7 +430,7 @@ describe('return openGraphScraper', function () {
       it('using promises', function () {
         return openGraphScraper({ url: 'www.test.com' })
           .then(function () {
-            expect().fail('this should not happen');
+            expect.fail('this should not happen');
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
@@ -460,7 +460,7 @@ describe('return openGraphScraper', function () {
       it('using promises', function () {
         return openGraphScraper({ url: 'www.test.com' })
           .then(function () {
-            expect().fail('this should not happen');
+            expect.fail('this should not happen');
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
@@ -490,7 +490,7 @@ describe('return openGraphScraper', function () {
       it('using promises', function () {
         return openGraphScraper({ url: 'www.test.com' })
           .then(function () {
-            expect().fail('this should not happen');
+            expect.fail('this should not happen');
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
@@ -520,7 +520,7 @@ describe('return openGraphScraper', function () {
       it('using promises', function () {
         return openGraphScraper({ url: 'www.test.com' })
           .then(function () {
-            expect().fail('this should not happen');
+            expect.fail('this should not happen');
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
@@ -550,7 +550,7 @@ describe('return openGraphScraper', function () {
       it('using promises', function () {
         return openGraphScraper({ url: 'www.test.com' })
           .then(function () {
-            expect().fail('this should not happen');
+            expect.fail('this should not happen');
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
@@ -580,7 +580,7 @@ describe('return openGraphScraper', function () {
       it('using promises', function () {
         return openGraphScraper({ url: 'www.test.com' })
           .then(function () {
-            expect().fail('this should not happen');
+            expect.fail('this should not happen');
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
@@ -609,7 +609,7 @@ describe('return openGraphScraper', function () {
       it('using promises', function () {
         return openGraphScraper({ url: 'www.test.com' })
           .then(function () {
-            expect().fail('this should not happen');
+            expect.fail('this should not happen');
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
@@ -638,7 +638,7 @@ describe('return openGraphScraper', function () {
       it('using promises', function () {
         return openGraphScraper({ url: 'www.test.com' })
           .then(function () {
-            expect().fail('this should not happen');
+            expect.fail('this should not happen');
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
@@ -667,7 +667,7 @@ describe('return openGraphScraper', function () {
       it('using promises', function () {
         return openGraphScraper({ url: 'www.test.com' })
           .then(function () {
-            expect().fail('this should not happen');
+            expect.fail('this should not happen');
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
@@ -697,7 +697,7 @@ describe('return openGraphScraper', function () {
       it('using promises', function () {
         return openGraphScraper({ url: 'www.test.com' })
           .then(function () {
-            expect().fail('this should not happen');
+            expect.fail('this should not happen');
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
@@ -724,7 +724,7 @@ describe('return openGraphScraper', function () {
       it('using promises', function () {
         return openGraphScraper({ url: 'http://www.test.com/test.png' })
           .then(function () {
-            expect().fail('this should not happen');
+            expect.fail('this should not happen');
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
@@ -751,7 +751,7 @@ describe('return openGraphScraper', function () {
       it('using promises', function () {
         return openGraphScraper({ url: 'http://www.test.com/test.pdf?123' })
           .then(function () {
-            expect().fail('this should not happen');
+            expect.fail('this should not happen');
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
@@ -778,7 +778,7 @@ describe('return openGraphScraper', function () {
       it('using promises', function () {
         return openGraphScraper({ url: 'www.test.com/test', blacklist: ['test.com'] })
           .then(function () {
-            expect().fail('this should not happen');
+            expect.fail('this should not happen');
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
@@ -805,7 +805,7 @@ describe('return openGraphScraper', function () {
       it('using promises', function () {
         return openGraphScraper({ url: '' })
           .then(function () {
-            expect().fail('this should not happen');
+            expect.fail('this should not happen');
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
@@ -832,7 +832,7 @@ describe('return openGraphScraper', function () {
       it('using promises', function () {
         return openGraphScraper({ url: 'www.test.com', html: basicHTML })
           .then(function () {
-            expect().fail('this should not happen');
+            expect.fail('this should not happen');
           })
           .catch(function (data) {
             expect(data.error).to.be.eql(true);
