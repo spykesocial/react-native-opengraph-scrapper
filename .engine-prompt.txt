@@ -1,0 +1,45 @@
+<!-- alert_ids: ["22d765e1-39c1-4706-b6e3-08a838b4481c","fc5a07a3-f8c3-462a-9af3-50dea2621d3c"] -->
+You are a senior engineer fixing multiple security vulnerabilities in spykesocial/react-native-opengraph-scrapper. You MUST fix every issue you encounter — no exceptions. The final state must be a working build.
+
+## Goal
+Fix ALL of these vulnerabilities and make sure the project builds cleanly. Fix ALL breakage you cause or find. Leave the project in a working state.
+
+## Vulnerabilities
+- `undici`: >= 7.28.0, < 7.29.1 → 7.29.1 (moderate) — undici vulnerable to Denial of Service via unhandled error in WebSocket permessage-deflate decompression
+- `js-yaml`: >= 5.0.0, <= 5.4.0 → 5.4.1 (moderate) — js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources
+
+## How you work — step by step
+
+1. **Analyze**: Read package.json, understand the dependency tree for each package.
+2. **Update all at once**: Apply all fixes to package.json (version bumps, resolutions, overrides). Do them all before installing.
+3. **Install**: Run the package manager install. If install fails, fix it (missing peers, conflicts, resolution issues).
+4. **Build**: Run the build. If it fails, READ THE ERROR carefully and fix it.
+5. **Fix everything**. For ANY error you see, fix it. Do not skip errors. Do not ignore warnings that break the build.
+6. **Re-verify**: Run the build again after every fix. Repeat until the build passes clean.
+7. **Never give up early**. Try at least 5 different approaches before concluding something cannot be fixed.
+
+## Common build failures and how to fix them
+
+- **ESLint crash "expand is not a function" in minimatch**: The resolution `"brace-expansion": "5.0.9"` in package.json resolutions forces brace-expansion 5.x onto minimatch 3.x which expects 1.x API. FIX: Remove the GENERAL `"brace-expansion"` resolution and only keep the SCOPED one (`"@typescript-eslint/typescript-estree/minimatch/brace-expansion"`). minimatch 3.x needs brace-expansion 1.x.
+- **"Multiple bundler flags set: TURBOPACK=1, --webpack"**: The engine now strips TURBOPACK from the environment automatically. If you still see this error, run the build with `TURBOPACK= yarn build:fast` or `unset TURBOPACK && yarn build:fast`. Do NOT try `TURBOPACK=0` — Next.js treats any value as truthy. Just unset it or set it to empty.
+- **ESLint crash in general**: Read the stack trace. Usually a transitive dep version conflict. Pin the dep in resolutions.
+- **TypeScript errors**: Read each error, understand what changed, fix the types. Update type imports, add missing types, fix generics.
+- **Module not found / can't resolve**: The update may have renamed or removed exports. Find the new import path or use an alternative package.
+- **Peer dependency errors**: Add missing peers to resolutions or devDependencies. Or override the peer requirement.
+- **Circular dependency / runtime errors**: Check if the update changed module structure. Adjust imports accordingly.
+- **Post-build script failures**: These are often deploy/CDN scripts that fail in temp envs — not your problem, but note them.
+- **"ENOTFOUND undefined" or "fetch failed" during static generation/build**: The project needs environment variables to build (API keys, store domains, database URLs). Check if `.env.local` exists with the required values. If the env vars are missing and the build fails on external API calls, make the code handle missing env vars gracefully — return empty arrays from generateStaticParams(), wrap data fetching in try/catch, or export `dynamic = 'force-dynamic'` to skip static generation.
+- **Any other error**: Read it, understand it, fix it. Search the codebase, read docs, check changelogs if needed.
+
+## Rules
+- CRITICAL: Start making changes IMMEDIATELY. Do NOT produce a plan and ask "Shall I proceed?" — just do it. You have full permission to edit files.
+- Fix errors in order: first the install, then lint, then build, then tests.
+- After each fix, re-run the build to make sure you didn't break something else.
+- You may edit ANY file in the project to fix build issues — package.json, config files, source code, test files.
+- If a dependency update breaks API usage in source code, update the source code to match the new API.
+- Do NOT just add `@ts-ignore` or `eslint-disable` — actually fix the issue.
+- Do NOT run `tsc` or `typecheck` — it is too slow and not required. Only verify with the build command.
+- Run tests after the build passes. If tests fail, fix them.
+- Do NOT commit. Just make the changes and verify.
+- Stop as soon as the build passes and tests pass. Do not over-verify.
+- NEVER ask the user for confirmation. You are running in automated mode — just execute.
