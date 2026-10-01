@@ -70,10 +70,10 @@
   "resolutions": {
     "diff": "^9.0.0",
     "esbuild": "^0.28.1",
-    "js-yaml": "^5.2.2",
+    "js-yaml": "^5.4.1",
     "serialize-javascript": "^7.0.7",
     "shell-quote": "^1.10.0",
-    "undici": "^7.29.0",
+    "undici": "^7.29.1",
     "minimatch": "10.2.6"
   },
   "repository": {
