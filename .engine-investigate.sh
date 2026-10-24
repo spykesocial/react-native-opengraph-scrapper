@@ -38,16 +38,11 @@ fi
 
 if [[ "$CMD" == "how-to-build" || "$CMD" == "all" ]]; then
   echo "--- How to build this project ---"
-  echo "1. First unset TURBOPACK (it conflicts with --webpack in the build script):"
+  echo "1. Unset TURBOPACK (it can conflict with the build script's bundler flags):"
   echo "   unset TURBOPACK"
-  echo "2. Then run the build (use build:fast to skip typecheck):"
-  echo "   yarn build:fast"
-  echo "3. Or if you need the full build:"
-  echo "   SKIP_BUILD_TYPECHECK=1 yarn build"
-  echo ""
-  echo "--- If ESLint crashes with 'expand is not a function' ---"
-  echo "The general brace-expansion resolution forces v5.x onto minimatch 3.x which needs v1.x."
-  echo "Fix: Remove the general 'brace-expansion' resolution, keep only the scoped ones."
+  echo "2. Prefer the agent toolkit for builds:"
+  echo "   bash .engine/agents/build.sh"
+  echo "3. Or run the project's build script directly (see package.json scripts above)."
   echo ""
 fi
 
