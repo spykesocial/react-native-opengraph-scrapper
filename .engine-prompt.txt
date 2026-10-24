@@ -1,7 +1,7 @@
 Fix ALL of these vulnerabilities in spykesocial/react-native-opengraph-scrapper and make sure the project builds cleanly. Fix ALL breakage you cause or find. Leave the project in a working state.
 
 ## Vulnerabilities
-- `brace-expansion`: >= 4.0.0, < 5.0.12 → 5.0.12 (moderate) — brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service
+- `undici`: >= 7.15.0, < 7.30.1 → 7.30.1 (moderate) — undici vulnerable to Subresource Integrity bypass via non-lowercase algorithm tokens
 
 ## How you work — step by step
 
