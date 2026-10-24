@@ -1,7 +1,7 @@
 Fix ALL of these vulnerabilities in spykesocial/react-native-opengraph-scrapper and make sure the project builds cleanly. Fix ALL breakage you cause or find. Leave the project in a working state.
 
 ## Vulnerabilities
-- `serialize-javascript`: < 7.1.3 → 7.1.3 (low) — Serialize JavaScript: Cross-site scripting (XSS) via unescaped </script at the end of a serialized function body
+- `shell-quote`: >= 1.8.4, < 1.11.0 → 1.11.0 (critical) — shell-quote: `quote()` command injection via a line terminator in a token after a `{ comment }` token
 
 ## How you work — step by step
 
